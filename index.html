@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101019">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <title>Kakobuy Spreadsheet — Kategorie, linki i poradniki zakupowe</title>
+  <meta name="description" content="Kakobuy spreadsheet po polsku: wygodne kategorie, linki do Kalobuy oraz 20 poradników o rozmiarach, QC, budżecie i porównywaniu produktów.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:title" content="Kakobuy Spreadsheet — Znajdź swój następny wybór">
+  <meta property="og:description" content="Kategorie odzieży, obuwia i dodatków. Praktyczne poradniki zakupowe po polsku w jednym miejscu.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='17' fill='%23c1ff72'/%3E%3Cpath d='M17 15h9v15l14-15h11L33 34l19 16H39L26 38v12h-9z' fill='%23101019'/%3E%3C/svg%3E">
+  <style>
+    :root{--bg:#101019;--panel:#191923;--panel2:#20202d;--ink:#f8f8fc;--muted:#b3b3c4;--lime:#c1ff72;--purple:#a58aff;--orange:#ff916e;--line:rgba(255,255,255,.11);--radius:22px;--max:1180px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:98px}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+    body.sheet-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,select{font:inherit}
+    button,a,select{-webkit-tap-highlight-color:transparent}
+    button{cursor:pointer}
+    img{display:block;max-width:100%}
+    button:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--lime);outline-offset:5px}
+    ::selection{background:var(--lime);color:var(--bg)}
+    .wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+    .skip{position:fixed;left:20px;top:-100px;z-index:1000;background:var(--lime);color:var(--bg);padding:12px 20px;border-radius:12px}
+    .skip:focus{top:12px}
+    .nav{position:sticky;top:0;z-index:80;background:rgba(13,13,22,.89);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.13)}
+    .nav-inner{height:78px;display:flex;align-items:center;gap:28px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:21px;letter-spacing:-.8px;white-space:nowrap;color:#fff}
+    .brand-icon{display:grid;place-items:center;width:35px;height:35px;background:var(--lime);border-radius:10px;color:var(--bg);font-weight:950;transform:rotate(-7deg)}
+    .brand small{color:var(--lime);font-size:12px;letter-spacing:.5px;margin-left:1px}
+    .nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-size:13px;font-weight:650;color:#ededf7}
+    .nav-links a:hover{color:var(--lime)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:13px 21px;border-radius:13px;font-size:13px;font-weight:800;border:1px solid transparent;transition:transform .2s,background .2s,border-color .2s;text-align:center;line-height:1.4}
+    .btn:hover{transform:translateY(-3px)}
+    .btn-lime{background:var(--lime);color:#15191a;box-shadow:0 8px 35px #c1ff7215}
+    .btn-lime:hover{background:#d5ff9f}
+    .btn-dark{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2);color:#fff}
+    .btn-dark:hover{background:rgba(255,255,255,.12);border-color:var(--purple)}
+    .btn-small{min-height:40px;padding:10px 15px;font-size:12px}
+    .menu-mobile{display:none}
+    .hero{position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 43%;z-index:-3;opacity:.27}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#101019 5%,#101019db 48%,#10101930),linear-gradient(0deg,#101019,transparent 65%);z-index:-2}
+    .hero:after{content:"";position:absolute;width:500px;height:400px;right:-160px;top:-210px;border-radius:50%;background:#9a6aff24;filter:blur(80px);z-index:-1}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:50px;align-items:center;padding-top:49px;padding-bottom:45px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:1.8px;color:var(--lime);margin:0 0 15px}
+    .dot{width:7px;height:7px;display:inline-block;background:var(--lime);border-radius:50%;box-shadow:0 0 15px #c1ff7270}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(42px,5vw,68px);font-weight:900;line-height:1.02;letter-spacing:-3.5px;margin-bottom:20px}
+    h1 .accent{color:var(--lime)}
+    .hero-copy{font-size:15px;line-height:1.8;color:#c4c4d0;max-width:500px;margin-bottom:23px}
+    .hero-actions{display:flex;gap:11px;flex-wrap:wrap}
+    .hero-note{margin:15px 0 0;color:#aaaabd;font-size:11px}
+    .hero-board{position:relative;background:#1d1d29e8;border:1px solid #ffffff21;border-radius:24px;padding:20px;box-shadow:0 28px 80px #0006;transform:rotate(2deg)}
+    .board-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .board-label{font-size:11px;letter-spacing:1.5px;color:#c8c8d8;font-weight:800}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:7px;font-size:9px;font-weight:850;letter-spacing:.8px;background:#c1ff721a;color:var(--lime)}
+    .board-pics{display:grid;grid-template-columns:1.05fr .95fr;gap:10px}
+    .product-tile{position:relative;min-height:205px;overflow:hidden;border-radius:15px;background:#373345}
+    .product-tile img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .5s}
+    .product-tile:hover img{transform:scale(1.07)}
+    .product-tile:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#000b)}
+    .tile-label{position:absolute;bottom:12px;left:12px;z-index:1;font-size:12px;font-weight:800}
+    .tile-tag{position:absolute;top:10px;left:10px;z-index:1;background:var(--purple);color:#171323;font-size:9px;font-weight:900;padding:5px 8px;border-radius:5px}
+    .tile-tag.orange{background:var(--orange)}
+    .board-bottom{margin-top:14px;display:flex;align-items:center;gap:11px}
+    .board-icon{background:#a58aff22;color:var(--purple);width:34px;height:34px;display:grid;place-items:center;border-radius:10px}
+    .board-bottom p{margin:0;font-size:11px;color:#bfbfce}
+    .board-bottom strong{color:#fff;display:block;font-size:12px}
+    .float-label{position:absolute;bottom:55px;right:-15px;padding:10px 14px;background:var(--lime);color:#19201b;border-radius:11px;font-size:10px;font-weight:900;transform:rotate(-7deg);box-shadow:0 8px 25px #0004}
+    .strip{border-bottom:1px solid var(--line);background:#15151e}
+    .strip-grid{display:grid;grid-template-columns:repeat(3,1fr);padding-block:17px}
+    .strip-item{display:flex;align-items:center;justify-content:center;gap:11px;font-size:12px;color:#bdbdcc}
+    .strip-item+.strip-item{border-left:1px solid var(--line)}
+    .strip-item strong{color:#fff;font-size:14px}
+    .strip-item span.icon{color:var(--purple);font-size:21px}
+    section{padding-block:54px}
+    .section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:23px}
+    .kicker{font-size:10px;text-transform:uppercase;letter-spacing:2px;font-weight:850;color:var(--purple);margin:0 0 9px}
+    h2{font-size:clamp(27px,3vw,37px);line-height:1.16;letter-spacing:-1.4px;margin-bottom:10px}
+    .section-heading p,.section-intro{font-size:13px;color:var(--muted);max-width:580px;margin-bottom:0}
+    .section-count{color:#a7a7bb;font-size:11px;white-space:nowrap}
+    .selector{display:flex;gap:15px;align-items:center;background:linear-gradient(110deg,#272137,#1a1a25);border:1px solid #a58aff38;padding:17px 19px;border-radius:16px;margin-bottom:18px}
+    .selector label{font-size:12px;font-weight:800;white-space:nowrap}
+    .select-wrap{position:relative;flex:1}
+    .select-wrap:after{content:"⌄";position:absolute;right:14px;top:8px;pointer-events:none;color:var(--lime)}
+    select{appearance:none;width:100%;padding:11px 38px 11px 14px;border:1px solid #ffffff24;border-radius:10px;background:#13131f;color:#fff;font-size:12px;min-height:43px}
+    option{background:#191923;color:#fff}
+    .categories{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
+    .category{position:relative;display:flex;flex-direction:column;gap:15px;min-height:136px;padding:19px;background:var(--panel);border:1px solid var(--line);border-radius:15px;overflow:hidden;transition:border-color .2s,transform .2s,background .2s}
+    .category:hover{transform:translateY(-4px);border-color:#c1ff7270;background:#22232b}
+    .category-icon{display:grid;place-items:center;width:39px;height:39px;border-radius:11px;background:#a58aff19;color:var(--purple);font-size:21px}
+    .category:nth-child(3n+2) .category-icon{background:#c1ff7214;color:var(--lime)}
+    .category:nth-child(3n) .category-icon{background:#ff916e18;color:var(--orange)}
+    .category strong{font-size:12px;line-height:1.4;position:relative;z-index:1}
+    .category small{display:block;font-size:10px;color:#9898ae;margin-top:3px;font-weight:450}
+    .category .arrow{position:absolute;right:14px;top:17px;font-size:14px;color:#8b8b9e}
+    .intro-panel{display:grid;grid-template-columns:.8fr 1.2fr;border-radius:var(--radius);overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+    .intro-art{position:relative;min-height:290px;background:#333039;overflow:hidden}
+    .intro-art img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;opacity:.72}
+    .intro-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#13131fc9,transparent)}
+    .intro-art-text{position:absolute;bottom:24px;left:25px;z-index:1;font-size:30px;font-weight:900;line-height:1.1;letter-spacing:-1px}
+    .intro-art-text span{color:var(--lime)}
+    .intro-content{padding:31px}
+    .intro-content h2{font-size:29px}
+    .intro-content p{color:var(--muted);font-size:13px;line-height:1.85;margin-bottom:13px}
+    .text-link{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:800;color:var(--lime)}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:23px}
+    .step{padding:24px;border:1px solid var(--line);border-radius:17px;background:var(--panel)}
+    .step-number{font-size:12px;color:var(--lime);font-weight:900;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+    .step-number:after{content:"";height:1px;flex:1;background:var(--line)}
+    .step h3{font-size:16px;letter-spacing:-.3px;margin-bottom:9px}
+    .step p{font-size:12px;color:var(--muted);margin:0;line-height:1.85}
+    .guides-section{background:#14141e;border-block:1px solid var(--line)}
+    .guide-tools{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+    .filter{border:1px solid var(--line);border-radius:9px;padding:8px 13px;background:transparent;color:#bfbfce;font-size:11px;font-weight:700}
+    .filter[aria-pressed="true"]{background:var(--lime);color:#182019;border-color:var(--lime)}
+    .guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+    .guide{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:17px;background:#1a1a25;padding:21px;transition:transform .2s,border-color .2s}
+    .guide:hover{transform:translateY(-4px);border-color:#a58aff80}
+    .guide[hidden]{display:none}
+    .guide-meta{display:flex;justify-content:space-between;align-items:center;font-size:9px;text-transform:uppercase;font-weight:800;letter-spacing:1px;color:var(--purple);margin-bottom:18px}
+    .guide-index{font-size:12px;color:#717186}
+    .guide h3{font-size:16px;line-height:1.4;letter-spacing:-.3px;margin-bottom:9px}
+    .guide p{color:var(--muted);font-size:12px;line-height:1.8;margin-bottom:20px}
+    .guide-bottom{display:flex;align-items:center;justify-content:space-between;color:var(--lime);font-size:11px;font-weight:800;margin-top:auto}
+    .guide-bottom span:last-child{font-size:18px}
+    .budget-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    .budget-text p{color:var(--muted);font-size:13px;line-height:1.9}
+    .checklist{list-style:none;margin:21px 0 0;padding:0;display:grid;gap:12px}
+    .checklist li{display:flex;gap:10px;color:#d7d7e2;font-size:12px}
+    .checklist li:before{content:"✓";color:var(--lime);font-weight:900}
+    .calculator{padding:25px;border:1px solid #a58aff45;background:linear-gradient(140deg,#252034,#1a1a25);border-radius:20px}
+    .calc-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+    .calc-title h3{font-size:15px;margin:0}
+    .calc-title span{font-size:9px;color:var(--purple);font-weight:800;letter-spacing:1px}
+    .calc-row{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:11px;font-size:12px;color:#c3c3d0}
+    .input-wrap{display:flex;align-items:center;gap:6px}
+    .calc-row input{width:94px;padding:9px 10px;text-align:right;border:1px solid #ffffff20;background:#11111b;color:#fff;border-radius:8px;font:inherit}
+    .calc-row input:focus{outline:2px solid var(--purple)}
+    .input-wrap span{font-size:10px;width:22px;color:#a4a4b8}
+    .calc-total{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:17px;margin-top:17px;font-size:13px}
+    .calc-total output{font-size:29px;line-height:1.2;font-weight:900;color:var(--lime);letter-spacing:-1px}
+    .calc-note{font-size:10px;color:#aaaabd;margin:13px 0 0;line-height:1.8}
+    .faq-grid{display:grid;grid-template-columns:.65fr 1.35fr;gap:48px}
+    .faq-intro p{font-size:13px;color:var(--muted)}
+    details{border-bottom:1px solid var(--line)}
+    details:first-child{border-top:1px solid var(--line)}
+    summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:19px 0;font-size:13px;font-weight:750}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"+";font-size:22px;color:var(--lime);font-weight:400}
+    details[open] summary:after{content:"−"}
+    details p{font-size:12px;color:var(--muted);line-height:1.9;margin:0 25px 20px 0}
+    .cta{padding:0 0 52px}
+    .cta-inner{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px;background:var(--lime);color:#161b18;border-radius:22px}
+    .cta-inner:after{content:"↗";position:absolute;right:200px;top:-40px;font-size:200px;line-height:1;color:#1520140b;pointer-events:none}
+    .cta-inner h2{font-size:29px;margin-bottom:8px}
+    .cta-inner p{font-size:12px;color:#37432b;margin:0;max-width:560px}
+    .cta-inner .btn{background:#15191a;color:#fff;white-space:nowrap;position:relative;z-index:1}
+    footer{border-top:1px solid var(--line);padding:30px 0}
+    .footer-top{display:flex;justify-content:space-between;gap:30px;align-items:center;margin-bottom:20px}
+    .footer-links{display:flex;gap:20px;font-size:11px;color:var(--muted)}
+    .footer-bottom{display:flex;justify-content:space-between;gap:25px;border-top:1px solid var(--line);padding-top:20px;color:#9090a5;font-size:10px;align-items:flex-start}
+    .footer-bottom p{max-width:670px;margin:0;line-height:1.9}
+    .export-btn{color:#bfbfce;border:1px solid var(--line);border-radius:8px;background:transparent;padding:8px 12px;font-size:10px;white-space:nowrap}
+    .export-btn:hover{border-color:var(--purple);color:#fff}
+    .export-status{font-size:10px;color:var(--lime);margin-top:7px;text-align:right}
+    .sheet-backdrop{position:fixed;inset:0;background:#0009;z-index:98;backdrop-filter:blur(4px)}
+    .sheet{position:fixed;inset:auto 0 0;z-index:99;background:#1b1b27;border:1px solid #ffffff20;border-bottom:0;border-radius:25px 25px 0 0;padding:10px 22px max(25px,env(safe-area-inset-bottom));box-shadow:0 -20px 70px #0006;max-height:85dvh;overflow:auto}
+    .sheet[hidden],.sheet-backdrop[hidden]{display:none}
+    .sheet-handle{width:40px;height:4px;border-radius:4px;background:#646477;margin:0 auto 19px}
+    .sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}
+    .sheet-head strong{font-size:19px;letter-spacing:-.5px}
+    .sheet-close{width:32px;height:32px;background:#ffffff0b;border:1px solid var(--line);border-radius:50%;color:#fff;font-size:20px}
+    .sheet-links{display:grid;gap:8px}
+    .sheet-links a{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;background:#252533;border:1px solid var(--line);border-radius:12px;font-size:13px;font-weight:700}
+    .sheet-links a span{color:var(--lime)}
+    .sheet-category{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:15px}
+    .sheet-category a{padding:9px 10px;background:#15151f;border-radius:9px;font-size:10px;color:#c5c5d4}
+    .sheet-note{color:#9494ab;font-size:10px;margin:15px 0 0}
+    .bottom-nav{display:none}
+    .article-main{max-width:830px;margin-inline:auto;padding:39px 0 60px}
+    .breadcrumb{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:27px}
+    .breadcrumb a{color:var(--lime)}
+    .article-header h1{font-size:clamp(32px,4.5vw,49px);letter-spacing:-1.8px;line-height:1.14}
+    .article-lead{font-size:17px;color:#c5c5d5;line-height:1.9;margin:0 0 24px}
+    .article-image{width:100%;height:290px;object-fit:cover;border-radius:20px;margin-bottom:25px}
+    .article-body{font-size:15px;color:#c5c5d4;line-height:1.95}
+    .article-body h2{font-size:26px;margin:33px 0 13px;color:#fff;letter-spacing:-.6px}
+    .article-body h3{color:#fff;font-size:19px}
+    .article-body p{margin-bottom:18px}
+    .article-body li{margin-bottom:9px}
+    .article-body a{color:var(--lime);text-decoration:underline;text-underline-offset:4px}
+    .article-body table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.65}
+    .article-body th,.article-body td{padding:13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+    .article-body th{background:#a58aff16;color:#fff}
+    .table-scroll{overflow:auto;border:1px solid var(--line);border-radius:13px;margin:20px 0}
+    .article-aside{padding:21px;background:#c1ff720b;border:1px solid #c1ff7227;border-radius:15px;margin:25px 0;font-size:13px}
+    .article-aside strong{color:var(--lime)}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .related-link{padding:18px;border:1px solid var(--line);background:var(--panel);border-radius:13px;font-size:12px;font-weight:750;line-height:1.7}
+    .related-link:hover{border-color:var(--lime)}
+    .article-disclaimer{font-size:11px;color:#9494a9;border-top:1px solid var(--line);padding-top:17px;margin-top:26px}
+    @media(min-width:1500px){.hero-grid{padding-top:60px;padding-bottom:55px}}
+    @media(max-width:1000px){.nav-links{gap:16px}.nav-links a:nth-child(3){display:none}.hero-grid{gap:30px}h1{font-size:54px}.categories{grid-template-columns:repeat(5,1fr)}.category{padding:15px}.category strong{font-size:11px}.faq-grid{gap:30px}.guide{padding:18px}}
+    @media(max-width:760px){
+      .wrap{width:calc(100% - 32px)}
+      .nav-inner{height:65px;gap:12px}
+      .brand{font-size:19px}.brand-icon{width:31px;height:31px}
+      .nav-links{display:none}
+      .menu-mobile{display:flex;align-items:center;justify-content:center;margin-left:auto;width:39px;height:37px;border:1px solid var(--line);background:#ffffff09;border-radius:10px;color:#fff;font-size:19px}
+      .hero-grid{grid-template-columns:1fr;gap:28px;padding-top:31px;padding-bottom:31px}
+      h1{font-size:clamp(43px,10.5vw,65px);letter-spacing:-2.5px;max-width:560px}
+      .hero-copy{font-size:14px;max-width:550px}
+      .hero-board{max-width:440px;width:100%;margin:0 auto;transform:rotate(1deg);padding:16px}
+      .product-tile{min-height:170px}
+      .float-label{right:-5px;bottom:50px}
+      .hero-photo{object-position:60% center}
+      .hero:before{background:linear-gradient(90deg,#101019e8,#101019b0),linear-gradient(0deg,#101019,transparent)}
+      .strip-grid{gap:8px;padding-block:14px}
+      .strip-item{flex-direction:column;gap:3px;font-size:9px;text-align:center;line-height:1.5}
+      .strip-item span.icon{display:none}.strip-item strong{font-size:12px}
+      section{padding-block:35px}
+      .section-heading{align-items:flex-start;gap:15px;margin-bottom:20px}
+      h2{font-size:28px}
+      .section-count{display:none}
+      .selector{flex-wrap:wrap;padding:14px;gap:10px}
+      .selector label{width:100%;font-size:11px}
+      .selector .btn{padding-inline:14px}
+      .categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .category{min-height:107px;padding:14px;gap:11px}
+      .category strong{font-size:12px}
+      .category-icon{width:31px;height:31px;font-size:18px;border-radius:9px}
+      .intro-panel{grid-template-columns:1fr}
+      .intro-art{min-height:210px}
+      .intro-content{padding:23px}
+      .intro-content h2{font-size:26px}
+      .steps{grid-template-columns:1fr;gap:10px}
+      .step{padding:20px}
+      .step-number{margin-bottom:12px}
+      .guide-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .guide{padding:16px}
+      .guide h3{font-size:14px}
+      .guide p{font-size:11px}
+      .guide-meta{font-size:8px;letter-spacing:.5px;margin-bottom:13px}
+      .budget-grid,.faq-grid{grid-template-columns:1fr;gap:23px}
+      .calculator{padding:20px}
+      .cta{padding-bottom:35px}
+      .cta-inner{padding:25px;display:block}
+      .cta-inner h2{font-size:26px}
+      .cta-inner .btn{margin-top:19px}
+      .footer-top,.footer-bottom{flex-direction:column;align-items:flex-start;gap:19px}
+      .footer-links{flex-wrap:wrap;gap:17px}
+      .export-status{text-align:left}
+      body{padding-bottom:76px}
+      .bottom-nav{position:fixed;display:grid;grid-template-columns:repeat(4,1fr);bottom:0;left:0;right:0;z-index:90;background:rgba(17,17,27,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid #ffffff1c;padding:8px 10px max(8px,env(safe-area-inset-bottom))}
+      .bottom-nav a,.bottom-nav button{display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:0;color:#b3b3c7;font-size:9px;padding:3px;line-height:1.5}
+      .bottom-nav .active{color:var(--lime)}
+      .bottom-icon{font-size:20px;line-height:1.2}
+      .article-main{padding-top:25px}
+      .article-lead{font-size:15px}
+      .article-image{height:210px}
+      .article-body{font-size:14px}
+      .article-body h2{font-size:23px}
+      .related-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:380px){.guide-grid{grid-template-columns:1fr}.hero-actions .btn{width:100%}.brand small{display:none}.selector .btn{font-size:11px;padding-inline:10px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+    @media print{.nav,.bottom-nav,.sheet,.sheet-backdrop,.cta,.export-btn,.guide-tools,.hero-board{display:none!important}body{background:#fff;color:#111;padding:0}.wrap{width:100%}.article-body,.article-lead{color:#222}.article-body h2,.article-header h1{color:#111}.article-body a{color:#111}.article-image{max-height:200px}.article-main{max-width:none}.table-scroll{break-inside:avoid}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebSite",
+        "name":"Kakobuy Spreadsheet — Polski przewodnik",
+        "inLanguage":"pl",
+        "description":"Polski przewodnik po kategoriach, porównywaniu produktów i planowaniu zakupów."
+      },
+      {
+        "@type":"FAQPage",
+        "inLanguage":"pl",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"Czym jest kakobuy spreadsheet?",
+            "acceptedAnswer":{"@type":"Answer","text":"To określenie zestawienia produktów i linków, zwykle uzupełnionego o kategorię, rozmiar, cenę lub notatki. Ta strona porządkuje kategorie i poradniki, a przyciski zakupowe prowadzą do Kalobuy."}
+          },
+          {
+            "@type":"Question",
+            "name":"Dokąd prowadzą przyciski zakupowe?",
+            "acceptedAnswer":{"@type":"Answer","text":"Przyciski kakobuy spreadsheet i View spreadsheet prowadzą do kalobuy.com. Przyciski kategorii otwierają przypisane adresy na tej samej zewnętrznej stronie."}
+          },
+          {
+            "@type":"Question",
+            "name":"Czy podane ceny i koszty są ofertą?",
+            "acceptedAnswer":{"@type":"Answer","text":"Nie. Kalkulator wykorzystuje kwoty wpisane przez użytkownika. Aktualną cenę produktu, dostępność i koszty dostawy należy sprawdzić przed zakupem."}
+          },
+          {
+            "@type":"Question",
+            "name":"Jak korzystać z kategorii?",
+            "acceptedAnswer":{"@type":"Answer","text":"Wybierz kategorię z listy i naciśnij Otwórz albo użyj jednego z dziesięciu kafelków kategorii. Zewnętrzny katalog otworzy się w nowej karcie."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Przejdź do treści</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html" aria-label="Kakobuy Spreadsheet — strona główna">
+        <span class="brand-icon" aria-hidden="true">k</span>
+        kako<span style="color:var(--lime)">sheet</span><small>PL</small>
+      </a>
+      <nav class="nav-links" aria-label="Nawigacja główna">
+        <a href="#kategorie">Kategorie</a>
+        <a href="#jak-zaczac">Jak zacząć</a>
+        <a href="#poradniki">Poradniki</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-dark btn-small" href="https://kalobuy.com/" target="_blank" rel="noopener nofollow">Otwórz Kalobuy ↗</a>
+      </nav>
+      <button class="menu-mobile" type="button" data-open-sheet aria-label="Otwórz menu" aria-controls="mobile-sheet" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-photo" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&amp;fit=crop&amp;w=1800&amp;q=85" alt="" fetchpriority="high" width="1800" height="1000">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow"><span class="dot"></span> Twój skrót do lepszych wyborów</p>
+          <h1 id="hero-title">Kakobuy<br><span class="accent">spreadsheet.</span><br>Twój styl. Twój wybór.</h1>
+          <p class="hero-copy">Mniej szukania, więcej konkretów. Odkrywaj kategorie, porównuj produkty i korzystaj z polskich poradników przed przejściem do Kalobuy.</p>
+          <div class="hero-actions">
+            <a class="btn btn-lime" href="https://kalobuy.com/" target="_blank" rel="noopener nofollow">kakobuy spreadsheet <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-dark" href="https://kalobuy.com/" target="_blank" rel="noopener nofollow">View spreadsheet <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-note">Oba przyciski otwierają kalobuy.com w nowej karcie.</p>
+        </div>
+        <div class="hero-board">
+          <div class="board-top">
+            <span class="board-label">THE STYLE SHORTLIST</span>
+            <span class="pill">ODKRYWAJ ↗</span>
+          </div>
+          <div class="board-pics">
+            <a class="product-tile" href="https://kalobuy.com/category-911-Shoes.html" target="_blank" rel="noopener nofollow" aria-label="Shoes — otwórz kategorię w Kalobuy">
+              <span class="tile-tag">SHOES</span>
+              <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Pomarańczowe obuwie sportowe — zdjęcie inspiracyjne" width="600" height="700" loading="eager">
+              <span class="tile-label">Zacznij od podstaw ↗</span>
+            </a>
+            <a class="product-tile" href="https://kalobuy.com/search-912/name/Shoes.html" target="_blank" rel="noopener nofollow" aria-label="Hoodies/Sweaters — otwórz kategorię w Kalobuy">
+              <span class="tile-tag orange">DAILY LAYERS</span>
+              <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Bluza z kapturem — zdjęcie inspiracyjne" width="600" height="700" loading="eager">
+              <span class="tile-label">Warstwy na co dzień ↗</span>
+            </a>
+          </div>
+          <div class="board-bottom">
+            <span class="board-icon" aria-hidden="true">▦</span>
+            <p><strong>Uporządkuj swój wybór</strong>Kategorie + poradniki + własny budżet</p>
+          </div>
+          <span class="float-label">FIND YOUR NEXT FAVORITE.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip">
+      <div class="wrap strip-grid">
+        <div class="strip-item"><span class="icon" aria-hidden="true">▦</span><span><strong>10 kategorii</strong> do odkrycia</span></div>
+        <div class="strip-item"><span class="icon" aria-hidden="true">↗</span><span><strong>20 poradników</strong> po polsku</span></div>
+        <div class="strip-item"><span class="icon" aria-hidden="true">◎</span><span><strong>Twój budżet</strong> pod kontrolą</span></div>
+      </div>
+    </div>
+
+    <section id="kategorie">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">Wybierz swój kierunek</p>
+            <h2>Dobry styl zaczyna się od kategorii.</h2>
+            <p>Przeglądaj kakobuy spreadsheet według tego, czego naprawdę szukasz. Każdy kafelek prowadzi do przypisanej kategorii w Kalobuy.</p>
+          </div>
+          <span class="section-count">01 — 10 / KATEGORIE</span>
+        </div>
+
+        <div class="selector">
+          <label for="category-select">Szybki wybór kategorii</label>
+          <div class="select-wrap">
+            <select id="category-select">
+              <option value="https://kalobuy.com/category-911-Shoes.html">Shoes</option>
+              <option value="https://kalobuy.com/search-912/name/Shoes.html">Hoodies/Sweaters</option>
+              <option value="https://kalobuy.com/search-913/name/Shoes.html">T-Shirts</option>
+              <option value="https://kalobuy.com/search-914/name/Shoes.html">Jackets</option>
+              <option value="https://kalobuy.com/search-915/name/Shoes.html">Pants/Shorts</option>
+              <option value="https://kalobuy.com/search-916/name/Shoes.html">Headwear</option>
+              <option value="https://kalobuy.com/search-917/name/Shoes.html">Sets</option>
+              <option value="https://kalobuy.com/search-918/name/Shoes.html">underwear/underpants</option>
+              <option value="https://kalobuy.com/search-919/name/Shoes.html">Jersey</option>
+              <option value="https://kalobuy.com/search-920/name/Shoes.html">Accessories</option>
+            </select>
+          </div>
+          <a id="category-open" class="btn btn-lime btn-small" href="https://kalobuy.com/category-911-Shoes.html" target="_blank" rel="noopener nofollow">Otwórz ↗</a>
+        </div>
+
+        <div class="categories">
+          <a class="category" href="https://kalobuy.com/category-911-Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">◒</span><strong>Shoes<small>Buty i sneakersy</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-912/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">♧</span><strong>Hoodies/Sweaters<small>Bluzy i swetry</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-913/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">T</span><strong>T-Shirts<small>Koszulki na co dzień</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-914/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">◈</span><strong>Jackets<small>Kurtki i warstwy</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-915/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">Ⅱ</span><strong>Pants/Shorts<small>Spodnie i szorty</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-916/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">◡</span><strong>Headwear<small>Czapki i nakrycia głowy</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-917/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">▥</span><strong>Sets<small>Gotowe komplety</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-918/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">◇</span><strong>underwear/underpants<small>Bielizna</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-919/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">↯</span><strong>Jersey<small>Koszulki sportowe</small></strong></a>
+          <a class="category" href="https://kalobuy.com/search-920/name/Shoes.html" target="_blank" rel="noopener nofollow"><span class="arrow">↗</span><span class="category-icon" aria-hidden="true">✳</span><strong>Accessories<small>Dodatki do stylizacji</small></strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0" id="o-spreadsheet">
+      <div class="wrap intro-panel">
+        <div class="intro-art">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Ubrania uporządkowane na wieszaku — inspiracja do planowania garderoby" loading="lazy" width="900" height="800">
+          <div class="intro-art-text">Less scrolling.<br><span>More finding.</span></div>
+        </div>
+        <div class="intro-content">
+          <p class="kicker">Kakobuy spreadsheet po polsku</p>
+          <h2>Lista linków to dopiero początek.</h2>
+          <p>Określenie <strong>kakobuy spreadsheet</strong> oznacza zwykle uporządkowaną listę produktów. Przydatne zestawienie pomaga zapisać link, kategorię, rozmiar, cenę i uwagi, aby porównać kilka propozycji bez ponownego przeszukiwania wszystkich ofert.</p>
+          <p>Tutaj znajdziesz skróty do dziesięciu kategorii i poradniki, które pomagają ocenić wymiary, zdjęcia QC oraz całkowity koszt. Przed zakupem sprawdzaj informacje bezpośrednio na stronie produktu. Zdjęcia na tej stronie służą jako inspiracje, a nie potwierdzenie dostępności konkretnych modeli.</p>
+          <a class="text-link" href="kakobuy-spreadsheet-co-to-jest.html">Poznaj podstawy spreadsheet <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="jak-zaczac" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><p class="kicker">Prosty plan zakupów</p><h2>Od inspiracji do świadomego wyboru.</h2></div>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="step-number">01 / ODKRYWAJ</div><h3>Wybierz kategorię.</h3><p>Zacznij od jednej potrzeby: butów, bluzy albo dodatków. Otwórz kategorię i zapisz kilka propozycji zamiast gromadzić przypadkowe linki.</p></div>
+          <div class="step"><div class="step-number">02 / PORÓWNUJ</div><h3>Sprawdź najważniejsze szczegóły.</h3><p>Porównaj wymiary, materiał, wariant i dostępne zdjęcia. Zapisz pytania, których opis produktu jeszcze nie wyjaśnia.</p></div>
+          <div class="step"><div class="step-number">03 / PLANUJ</div><h3>Policz pełny koszt.</h3><p>Uwzględnij cenę rzeczy, transport i pozostałe opłaty, które mają zastosowanie do zamówienia. Ostateczne warunki potwierdź przed płatnością.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guides-section" id="poradniki">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><p class="kicker">The knowledge edit</p><h2>Kakobuy spreadsheet bez zgadywania.</h2><p>20 praktycznych artykułów: od pierwszej listy produktów po rozmiary, kontrolę zdjęć i porządkowanie własnej garderoby.</p></div>
+          <span class="section-count" id="guide-count">20 PORADNIKÓW</span>
+        </div>
+        <div class="guide-tools" role="group" aria-label="Filtruj poradniki według tematu">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">Wszystkie</button>
+          <button class="filter" type="button" data-filter="podstawy" aria-pressed="false">Podstawy</button>
+          <button class="filter" type="button" data-filter="styl" aria-pressed="false">Kategorie i styl</button>
+          <button class="filter" type="button" data-filter="kontrola" aria-pressed="false">QC i rozmiary</button>
+          <button class="filter" type="button" data-filter="budzet" aria-pressed="false">Budżet i organizacja</button>
+        </div>
+        <div class="guide-grid">
+          <a class="guide" data-group="podstawy" href="kakobuy-spreadsheet-co-to-jest.html"><div class="guide-meta"><span>Podstawy</span><span class="guide-index">01</span></div><h3>Kakobuy spreadsheet: co to jest i jak korzystać?</h3><p>Co zapisywać przy produktach i jak zamienić zbiór linków w użyteczne zestawienie.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="podstawy" href="kakobuy-spreadsheet-jak-zaczac.html"><div class="guide-meta"><span>Podstawy</span><span class="guide-index">02</span></div><h3>Pierwsze zakupy: plan krok po kroku</h3><p>Od określenia potrzeb do sprawdzenia warunków zamówienia.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-buty.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">03</span></div><h3>Buty: porównuj więcej niż wygląd</h3><p>Rozmiar, długość wkładki, konstrukcja i przeznaczenie obuwia.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-bluzy-swetry.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">04</span></div><h3>Bluzy i swetry: krój, materiał, proporcje</h3><p>Jak zestawiać szerokość, długość i sposób wykończenia.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-t-shirty.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">05</span></div><h3>T-shirty: wybierz dobrą bazę garderoby</h3><p>Sprawdź dekolt, ramiona, długość oraz informacje o tkaninie.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-kurtki.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">06</span></div><h3>Kurtki: planuj zakup pod sposób używania</h3><p>Warstwy, kieszenie, zapięcia i deklarowane właściwości materiału.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-spodnie-szorty.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">07</span></div><h3>Spodnie i szorty: jak porównać wymiary?</h3><p>Pas, stan, udo i nogawka bez zgadywania na podstawie litery rozmiaru.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-czapki.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">08</span></div><h3>Czapki i headwear: dopasowanie ma znaczenie</h3><p>Obwód, regulacja, głębokość i konstrukcja nakrycia głowy.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-komplety.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">09</span></div><h3>Komplety: sprawdź górę i dół osobno</h3><p>Spójny wygląd nie zastępuje kontroli wymiarów obu elementów.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-bielizna.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">10</span></div><h3>Bielizna: materiał, rozmiar i opis zestawu</h3><p>Najważniejsze informacje do sprawdzenia przed złożeniem zamówienia.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-jersey.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">11</span></div><h3>Jersey: koszulka sportowa czy codzienna?</h3><p>Krój, wymiary, nadruki i personalizacja w jednym zestawieniu.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-akcesoria.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">12</span></div><h3>Akcesoria: małe dodatki, konkretne wymagania</h3><p>Porównuj rozmiary, zapięcia i funkcjonalność zamiast samych zdjęć.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="kontrola" href="kakobuy-spreadsheet-qc-zdjecia.html"><div class="guide-meta"><span>QC i rozmiary</span><span class="guide-index">13</span></div><h3>Zdjęcia QC: praktyczna lista kontroli</h3><p>Co można zauważyć na zdjęciu i czego fotografia nie potwierdzi.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="kontrola" href="kakobuy-spreadsheet-rozmiary.html"><div class="guide-meta"><span>QC i rozmiary</span><span class="guide-index">14</span></div><h3>Rozmiary: od tabeli do własnych pomiarów</h3><p>Jedna metoda mierzenia, jasne jednostki i porównywalne dane.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="budzet" href="kakobuy-spreadsheet-budzet.html"><div class="guide-meta"><span>Budżet</span><span class="guide-index">15</span></div><h3>Budżet zakupów: policz pełny koszt</h3><p>Przykład sumowania produktów, transportu i pozostałych kosztów.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="budzet" href="kakobuy-spreadsheet-wysylka.html"><div class="guide-meta"><span>Budżet</span><span class="guide-index">16</span></div><h3>Wysyłka: porównuj warunki, nie samą kwotę</h3><p>Masa, wymiary paczki, zakres usługi i aktualna wycena.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="budzet" href="kakobuy-spreadsheet-porownanie-produktow.html"><div class="guide-meta"><span>Organizacja</span><span class="guide-index">17</span></div><h3>Porównanie produktów: prosta macierz wyboru</h3><p>Jak porównać kilka propozycji według własnych priorytetów.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="podstawy" href="kakobuy-spreadsheet-bledy.html"><div class="guide-meta"><span>Podstawy</span><span class="guide-index">18</span></div><h3>Najczęstsze błędy przy korzystaniu z list</h3><p>Nieaktualne linki, pomylone warianty i brak końcowego sprawdzenia.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="budzet" href="kakobuy-spreadsheet-wlasna-lista.html"><div class="guide-meta"><span>Organizacja</span><span class="guide-index">19</span></div><h3>Własna lista produktów: kolumny, które pomagają</h3><p>Przejrzysty szablon do notowania linków, pomiarów i decyzji.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+          <a class="guide" data-group="styl" href="kakobuy-spreadsheet-garderoba.html"><div class="guide-meta"><span>Kategorie i styl</span><span class="guide-index">20</span></div><h3>Spójna garderoba: mniej przypadkowych zakupów</h3><p>Łącz produkty według kolorów, proporcji i rzeczywistych potrzeb.</p><div class="guide-bottom"><span>Czytaj poradnik</span><span>↗</span></div></a>
+        </div>
+        <noscript><p class="section-intro" style="margin-top:20px">Wszystkie poradniki są dostępne przez zwykłe linki powyżej. Filtrowanie tematów wymaga JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section id="budzet">
+      <div class="wrap budget-grid">
+        <div class="budget-text">
+          <p class="kicker">Know your numbers</p>
+          <h2>Dobry wybór mieści się w Twoim budżecie.</h2>
+          <p>Cena produktu to jeden z elementów planu. Wpisz własne kwoty, aby sprawdzić sumę przed przejściem do zakupów. Przykładowe wartości w kalkulatorze pokazują jedynie sposób liczenia.</p>
+          <ul class="checklist">
+            <li>Przelicz wszystkie pozycje na tę samą walutę.</li>
+            <li>Uwzględnij aktualną wycenę dostawy.</li>
+            <li>Dopisz pozostałe opłaty, jeśli dotyczą zamówienia.</li>
+            <li>Potwierdź ostateczną kwotę przed płatnością.</li>
+          </ul>
+          <a class="text-link" style="margin-top:21px" href="kakobuy-spreadsheet-budzet.html">Zobacz przykład obliczeń ↗</a>
+        </div>
+        <div class="calculator">
+          <div class="calc-title"><h3>Twój plan zakupów</h3><span>PLN / PRZYKŁAD</span></div>
+          <div class="calc-row"><label for="cost-products">Produkty</label><div class="input-wrap"><input id="cost-products" type="number" min="0" max="1000000" step="0.01" value="180" inputmode="decimal"><span>zł</span></div></div>
+          <div class="calc-row"><label for="cost-shipping">Transport</label><div class="input-wrap"><input id="cost-shipping" type="number" min="0" max="1000000" step="0.01" value="65" inputmode="decimal"><span>zł</span></div></div>
+          <div class="calc-row"><label for="cost-other">Pozostałe koszty</label><div class="input-wrap"><input id="cost-other" type="number" min="0" max="1000000" step="0.01" value="25" inputmode="decimal"><span>zł</span></div></div>
+          <div class="calc-total"><span>Suma planowana</span><output id="cost-total" for="cost-products cost-shipping cost-other" aria-live="polite">270,00 zł</output></div>
+          <p class="calc-note">To kalkulator sumy, a nie wycena dostawy ani kalkulator podatków. Nie pobiera aktualnych cen lub kursów walut. Wprowadź własne, zweryfikowane kwoty.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" style="padding-top:5px">
+      <div class="wrap faq-grid">
+        <div class="faq-intro"><p class="kicker">Warto wiedzieć</p><h2>Małe pytania.<br>Konkretne odpowiedzi.</h2><p>Najważniejsze informacje przed otwarciem kakobuy spreadsheet i zewnętrznych kategorii.</p></div>
+        <div>
+          <details><summary>Czym jest kakobuy spreadsheet?</summary><p>To określenie zestawienia produktów i linków, zwykle uzupełnionego o kategorię, rozmiar, cenę lub notatki. Ta strona porządkuje kategorie i poradniki, a przyciski zakupowe prowadzą do Kalobuy.</p></details>
+          <details><summary>Dokąd prowadzą przyciski zakupowe?</summary><p>Przyciski kakobuy spreadsheet i View spreadsheet prowadzą do kalobuy.com. Przyciski kategorii otwierają przypisane adresy na tej samej zewnętrznej stronie.</p></details>
+          <details><summary>Czy podane ceny i koszty są ofertą?</summary><p>Nie. Kalkulator wykorzystuje kwoty wpisane przez użytkownika. Aktualną cenę produktu, dostępność i koszty dostawy należy sprawdzić przed zakupem.</p></details>
+          <details><summary>Jak korzystać z kategorii?</summary><p>Wybierz kategorię z listy i naciśnij Otwórz albo użyj jednego z dziesięciu kafelków kategorii. Zewnętrzny katalog otworzy się w nowej karcie.</p></details>
+          <details><summary>Czy zdjęcia przedstawiają produkty dostępne w katalogu?</summary><p>Zdjęcia pełnią funkcję ilustracyjną i pokazują inspiracje związane z modą. Dostępność, warianty i wygląd konkretnego produktu sprawdzaj po otwarciu jego aktualnej oferty.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <div class="cta-inner">
+          <div><h2>Twoja następna stylizacja zaczyna się tutaj.</h2><p>Wybierz kategorię, sprawdź poradnik i przejdź do zewnętrznego katalogu, kiedy będziesz gotowy.</p></div>
+          <a class="btn" href="https://kalobuy.com/" target="_blank" rel="noopener nofollow">Przejdź do Kalobuy ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <a class="brand" href="index.html"><span class="brand-icon" aria-hidden="true">k</span>kako<span style="color:var(--lime)">sheet</span><small>PL</small></a>
+        <nav class="footer-links" aria-label="Nawigacja w stopce"><a href="#kategorie">Kategorie</a><a href="#poradniki">Poradniki</a><a href="#budzet">Budżet</a><a href="#faq">FAQ</a></nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> Kakosheet PL. Przewodnik tematyczny kakobuy spreadsheet. Linki zakupowe prowadzą do Kalobuy; nazwa tej strony nie stanowi potwierdzenia powiązania z innymi platformami. Przed zakupem sprawdź opis, cenę i warunki sprzedawcy. Zdjęcia mają charakter inspiracyjny.</p>
+        <div>
+          <button class="export-btn" id="export-site" type="button" title="Zapisz index.html oraz 20 osobnych stron artykułów w archiwum ZIP">Pobierz witrynę · 21 plików HTML ↓</button>
+          <div class="export-status" id="export-status" role="status"></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="bottom-nav" aria-label="Nawigacja mobilna">
+    <a href="index.html" class="active"><span class="bottom-icon" aria-hidden="true">⌂</span>Start</a>
+    <a href="#kategorie"><span class="bottom-icon" aria-hidden="true">▦</span>Kategorie</a>
+    <a href="#poradniki"><span class="bottom-icon" aria-hidden="true">▤</span>Poradniki</a>
+    <button type="button" data-open-sheet aria-controls="mobile-sheet" aria-expanded="false"><span class="bottom-icon" aria-hidden="true">☰</span>Menu</button>
+  </nav>
+
+  <div class="sheet-backdrop" id="sheet-backdrop" hidden></div>
+  <div class="sheet" id="mobile-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head"><strong id="sheet-title">Twój skrót do stylu.</strong><button class="sheet-close" id="sheet-close" type="button" aria-label="Zamknij menu">×</button></div>
+    <nav class="sheet-links" aria-label="Menu mobilne">
+      <a href="index.html">Strona główna <span>⌂</span></a>
+      <a href="#kategorie">Wszystkie kategorie <span>▦</span></a>
+      <a href="#poradniki">20 poradników zakupowych <span>↗</span></a>
+      <a href="#budzet">Kalkulator budżetu <span>＋</span></a>
+      <a href="#faq">Pytania i odpowiedzi <span>?</span></a>
+      <a href="https://kalobuy.com/" target="_blank" rel="noopener nofollow">Otwórz Kalobuy <span>↗</span></a>
+    </nav>
+    <div class="sheet-category" id="sheet-categories"></div>
+    <p class="sheet-note">Linki do Kalobuy otwierają nową kartę.</p>
+  </div>
+
+  <script>
+  "use strict";
+
+  /*
+   * Samodzielny plik źródłowy.
+   * Przycisk w stopce zapisuje index.html oraz 20 fizycznych stron .html.
+   * Po rozpakowaniu całego ZIP-u linki działają jako zwykłe twarde adresy.
+   * Brak routera klienta, history API, przekierowań i atrap podstron.
+   */
+
+  const categories = [
+    ["Shoes","https://kalobuy.com/category-911-Shoes.html"],
+    ["Hoodies/Sweaters","https://kalobuy.com/search-912/name/Shoes.html"],
+    ["T-Shirts","https://kalobuy.com/search-913/name/Shoes.html"],
+    ["Jackets","https://kalobuy.com/search-914/name/Shoes.html"],
+    ["Pants/Shorts","https://kalobuy.com/search-915/name/Shoes.html"],
+    ["Headwear","https://kalobuy.com/search-916/name/Shoes.html"],
+    ["Sets","https://kalobuy.com/search-917/name/Shoes.html"],
+    ["underwear/underpants","https://kalobuy.com/search-918/name/Shoes.html"],
+    ["Jersey","https://kalobuy.com/search-919/name/Shoes.html"],
+    ["Accessories","https://kalobuy.com/search-920/name/Shoes.html"]
+  ];
+
+  const photos = {
+    wardrobe:"https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1400&q=85",
+    shoes:"https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1400&q=85",
+    hoodie:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1400&q=85",
+    store:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=85"
+  };
+
+  const articles = [
+    {
+      slug:"kakobuy-spreadsheet-co-to-jest",
+      title:"Kakobuy spreadsheet: co to jest i jak korzystać?",
+      description:"Poznaj zastosowanie kakobuy spreadsheet: linki, warianty, wymiary, ceny i notatki, które pomagają uporządkować porównywanie produktów.",
+      group:"Podstawy",image:"wardrobe",category:0,related:[1,18,16],
+      lead:"Kakobuy spreadsheet to przede wszystkim sposób porządkowania informacji. Dobra lista ma pomagać w podjęciu decyzji, a nie tylko gromadzić kolejne linki.",
+      sections:[
+        ["Co powinno znaleźć się w zestawieniu?",
+          "Najprostszy arkusz zawiera nazwę produktu, kategorię i odnośnik do oferty. W praktyce warto dopisać wybrany kolor, rozmiar oraz datę sprawdzenia ceny. Bez tych informacji dwa podobne wiersze mogą oznaczać inne warianty, których nie da się uczciwie porównać.",
+          "Oddziel dane potwierdzone od własnych przypuszczeń. Jeśli materiał lub wymiary nie są podane, zapisz „brak informacji”. Pusta komórka łatwo staje się nieświadomym założeniem, że wszystko jest w porządku."],
+        ["Jak korzystać z linków na tej stronie?",
+          "Zacznij od kategorii odpowiadającej Twojej potrzebie. Przyciski zakupowe prowadzą do Kalobuy, gdzie należy sprawdzić aktualną ofertę. Sam zwrot kakobuy spreadsheet w tytule poradnika nie oznacza, że strona jest oficjalnym narzędziem konkretnej platformy.",
+          "Przed zapisaniem produktu zanotuj, do czego ma pasować i jaki problem rozwiązuje. Para butów na codzienne spacery wymaga innego porównania niż obuwie wybierane głównie do konkretnej stylizacji."],
+        ["Kiedy lista naprawdę pomaga?",
+          "Arkusz jest przydatny, gdy wracasz do ofert po kilku dniach albo porównujesz więcej niż jeden model. Aktualizuj informacje po ponownym otwarciu produktu. Lista nie rezerwuje ceny, rozmiaru ani dostępności."]
+      ],
+      headers:["Kolumna","Co zapisać","Dlaczego"],
+      rows:[["Link","Adres konkretnej oferty","Ułatwia ponowną weryfikację"],["Wariant","Kolor i rozmiar","Ogranicza pomyłki"],["Status","Do sprawdzenia / wybrane","Porządkuje decyzję"]],
+      checklist:["Zapisz konkretny wariant.","Dodaj datę kontroli oferty.","Oznacz brakujące informacje.","Sprawdź produkt ponownie przed płatnością."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-jak-zaczac",
+      title:"Kakobuy spreadsheet: pierwsze zakupy krok po kroku",
+      description:"Zaplanuj pierwsze zakupy z kakobuy spreadsheet: potrzeby, krótka lista, kontrola wymiarów i sprawdzenie pełnego kosztu.",
+      group:"Podstawy",image:"store",category:2,related:[0,13,14],
+      lead:"Pierwszą listę produktów najlepiej zacząć od ograniczonego celu. Jedna kategoria i kilka porównywalnych propozycji zwykle dają więcej niż dziesiątki przypadkowych zapisów.",
+      sections:[
+        ["Najpierw potrzeba, potem produkt",
+          "Zapisz, czego szukasz: codziennego T-shirtu, cieplejszej bluzy czy spodni o określonym kroju. Dodaj maksymalny budżet i dwa wymagania, z których nie chcesz rezygnować. Takie ograniczenia ułatwiają odrzucenie propozycji, które wyglądają atrakcyjnie, ale nie pasują do planu.",
+          "Otwórz odpowiednią kategorię i wybierz kilka ofert. Nie traktuj pierwszego zdjęcia jako pełnego opisu. Sprawdź wariant, tabelę wymiarów, materiał i informacje o warunkach zakupu."],
+        ["Przeprowadź kontrolę przed wyborem",
+          "Porównaj podane wymiary z ubraniem, które już dobrze leży. Jeżeli sposób mierzenia jest niejasny, zapisz pytanie zamiast zgadywać. Sprawdź również, czy wszystkie elementy widoczne na zdjęciu rzeczywiście należą do oferty.",
+          "W osobnym polu zaznacz status każdej pozycji. Warto rozróżniać „inspirację”, „do sprawdzenia” i „wybrane”. Dzięki temu luźny pomysł nie zamieni się przypadkiem w gotową decyzję zakupową."],
+        ["Zamknij plan przed płatnością",
+          "Zsumuj koszt produktów i dostępne informacje o dostawie oraz pozostałych opłatach. Gdy warunki są niepełne, wynik pozostaje szacunkiem. Ostatni krok to ponowne sprawdzenie wariantu i końcowej kwoty w miejscu zakupu."]
+      ],
+      headers:["Etap","Działanie","Efekt"],
+      rows:[["Plan","Potrzeba + limit","Jasny cel"],["Porównanie","Wymiary + opis","Krótsza lista"],["Weryfikacja","Wariant + koszty","Świadoma decyzja"]],
+      checklist:["Wybierz jedną kategorię.","Zapisz wymagania.","Sprawdź wymiary.","Potwierdź końcowe warunki."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-buty",
+      title:"Kakobuy spreadsheet — buty i sneakersy: jak porównywać?",
+      description:"Jak porównywać buty w kakobuy spreadsheet? Sprawdź długość wkładki, przeznaczenie, konstrukcję i zakres informacji w ofercie.",
+      group:"Kategorie i styl",image:"shoes",category:0,related:[13,12,16],
+      lead:"Zdjęcie buta przyciąga uwagę, ale dopasowanie zależy od danych, których często nie widać na pierwszej fotografii. Zacznij od przeznaczenia i rozmiaru.",
+      sections:[
+        ["Rozmiar to więcej niż numer EU",
+          "Ten sam numer nie musi oznaczać identycznego dopasowania w różnych modelach. Sprawdź, czy tabela opisuje długość stopy, wkładki czy inny wymiar. Nie porównuj tych wartości tak, jakby były zamienne.",
+          "Zmierz stopę zgodnie z instrukcją tabeli, a jeśli masz dobrze dopasowany podobny model, wykorzystaj go jako dodatkowy punkt odniesienia. Sam pomiar nie usuwa różnic w szerokości, podbiciu lub kształcie noska."],
+        ["Porównaj konstrukcję i zastosowanie",
+          "Buty do codziennego chodzenia, okazjonalnej stylizacji i konkretnego sportu mają inne zadania. Nie zakładaj właściwości sportowych na podstawie wyglądu. Deklarowane cechy powinny wynikać z opisu produktu.",
+          "Na zdjęciach przyjrzyj się połączeniu cholewki z podeszwą, okolicy pięty i symetrii obu butów. Ujęcie pod kątem może zniekształcać proporcje. Do porównania najlepiej wykorzystać podobne perspektywy."],
+        ["Co zapisać w arkuszu?",
+          "Zanotuj model, wariant, źródło tabeli rozmiarów i pytania do wyjaśnienia. Przy cenie dodaj datę sprawdzenia. Jeśli oferta nie podaje materiału lub wymiarów, traktuj to jako brak danych, a nie dowód określonej jakości."]
+      ],
+      headers:["Obszar","Co porównać","Uwaga"],
+      rows:[["Dopasowanie","Tabela i sposób pomiaru","Stopa i wkładka to różne dane"],["Konstrukcja","Pięta, nosek, łączenia","Sprawdź kilka ujęć"],["Zastosowanie","Opis przeznaczenia","Wygląd nie potwierdza parametrów"]],
+      checklist:["Zweryfikuj znaczenie podanego wymiaru.","Sprawdź kilka zdjęć.","Dopasuj model do zastosowania.","Zapisz wybrany kolor i rozmiar."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-bluzy-swetry",
+      title:"Kakobuy spreadsheet — bluzy i swetry: krój, materiał, proporcje",
+      description:"Porównuj bluzy i swetry: szerokość, długość, rękawy, skład materiału oraz szczegóły kroju w kakobuy spreadsheet.",
+      group:"Kategorie i styl",image:"hoodie",category:1,related:[13,19,12],
+      lead:"Dwie bluzy w rozmiarze M mogą mieć zupełnie inne proporcje. Porównanie konkretnych wymiarów pozwala lepiej ocenić efekt niż samo określenie oversize.",
+      sections:[
+        ["Ustal, jaki krój chcesz uzyskać",
+          "Wybierz dobrze leżącą bluzę i zmierz ją na płasko: szerokość pod pachami, długość oraz rękaw. Zapisz sposób pomiaru. Szerokość ubrania na płasko nie jest tym samym co obwód klatki piersiowej.",
+          "Przy opuszczonej linii ramion długość rękawa mierzona od szwu może wyglądać krócej, mimo że rękaw sięga nisko. Dlatego oceniaj ją razem z szerokością ramion i konstrukcją fasonu."],
+        ["Materiał i wykończenie",
+          "Sprawdź deklarowany skład, opis wnętrza i instrukcje pielęgnacji, jeżeli są dostępne. Określenia „gruba” lub „premium” nie zastępują konkretnych informacji. Nie przypisuj gramatury ani składu na podstawie zdjęcia.",
+          "Na fotografiach obejrzyj ściągacze, okolice kieszeni, kaptur i zapięcie. W swetrze przydatne są zbliżenia splotu oraz wykończenia dekoltu. Fotografie nie potwierdzają jednak miękkości ani odporności na mechacenie."],
+        ["Wpis do kakobuy spreadsheet",
+          "Zapisz krój, wymiary i planowaną warstwę pod spodem. Bluza noszona na cienki T-shirt może wymagać innych proporcji niż model do kilku warstw. Oceniaj wybrany produkt w kontekście własnej garderoby."]
+      ],
+      headers:["Cecha","Porównanie","Praktyczny sens"],
+      rows:[["Szerokość","Pomiar pod pachami","Ocena luzu"],["Długość","Od punktu wskazanego w tabeli","Proporcje sylwetki"],["Rękaw","Pomiar wraz z konstrukcją ramion","Ocena zasięgu rękawa"]],
+      checklist:["Zmierz własną bluzę.","Sprawdź sposób mierzenia.","Oddziel skład od haseł reklamowych.","Uwzględnij warstwę pod spodem."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-t-shirty",
+      title:"Kakobuy spreadsheet — T-shirty jako baza garderoby",
+      description:"Jak wybierać T-shirty z kakobuy spreadsheet: wymiary, dekolt, ramiona, materiał i przydatność w codziennych stylizacjach.",
+      group:"Kategorie i styl",image:"wardrobe",category:2,related:[13,19,16],
+      lead:"Dobry T-shirt powinien pasować do sposobu noszenia. Inne proporcje sprawdzą się jako samodzielna góra, a inne pod bluzą lub kurtką.",
+      sections:[
+        ["Zacznij od proporcji",
+          "Zmierz szerokość i długość koszulki, którą lubisz nosić. Sprawdź też położenie szwu ramienia i długość rękawa. Dopiero potem porównuj wyniki z tabelą oferty.",
+          "Jeśli zależy Ci na luźniejszym fasonie, szukaj odpowiedniej konstrukcji zamiast automatycznie wybierać większą literę rozmiaru. Większy rozmiar może wydłużyć koszulkę bardziej, niż oczekujesz."],
+        ["Oceń materiał i detale",
+          "Zapisz podany skład, informacje o gramaturze oraz zalecenia pielęgnacji. Jeśli gramatury nie podano, nie wyliczaj jej ze zdjęcia. Jasne kolory i mocne oświetlenie mogą zmieniać wrażenie grubości materiału.",
+          "Na zdjęciach przyjrzyj się dekoltowi, szwom bocznym i dołowi. Przy nadruku sprawdź jego położenie i proporcje względem całej koszulki. Fotografia nie pozwala wiarygodnie przewidzieć zachowania nadruku po wielu praniach."],
+        ["Wybierz funkcję w garderobie",
+          "Przy każdym T-shircie zapisz dwa zestawy, z którymi chcesz go nosić. Jeżeli nie pasuje do posiadanych spodni lub warstw, może wymagać dodatkowych zakupów. Uwzględnij to w ocenie jego rzeczywistej przydatności."]
+      ],
+      headers:["Element","Pytanie","Dane do zapisania"],
+      rows:[["Krój","Samodzielnie czy pod warstwę?","Szerokość i długość"],["Materiał","Co podaje oferta?","Skład i ewentualna gramatura"],["Nadruk","Czy proporcje odpowiadają oczekiwaniom?","Wariant i uwagi"]],
+      checklist:["Porównaj własną koszulkę.","Sprawdź dekolt i ramiona.","Zapisz deklarowany skład.","Zaplanuj dwa zestawy."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-kurtki",
+      title:"Kakobuy spreadsheet — kurtki: jak zaplanować wybór?",
+      description:"Praktyczny poradnik wyboru kurtki: warstwy, wymiary, kieszenie, zapięcia oraz weryfikacja deklarowanych właściwości.",
+      group:"Kategorie i styl",image:"store",category:3,related:[3,13,14],
+      lead:"Kurtkę warto oceniać według warunków, w których będzie używana. Sam wygląd nie mówi, jak sprawdzi się z grubą bluzą lub podczas zmiennej pogody.",
+      sections:[
+        ["Zaplanuj miejsce na warstwy",
+          "Porównaj wymiary kurtki z modelem noszonym w podobny sposób. Zwróć uwagę na klatkę piersiową, ramiona i obszar pach. Dodatkowa szerokość w jednym miejscu nie gwarantuje swobody w pozostałych.",
+          "Zapisz, co zamierzasz nosić pod spodem. Jeżeli planujesz grubą bluzę, porównanie z dopasowaną kurtką przejściową może prowadzić do błędnej oceny."],
+        ["Sprawdź funkcjonalność",
+          "Obejrzyj zapięcia, liczbę kieszeni, regulację kaptura i zakończenia rękawów. Zastanów się, które elementy są rzeczywiście potrzebne. Kieszeń widoczna na fotografii może mieć inną pojemność, niż sugeruje ujęcie.",
+          "Odporność na wodę, wiatr lub niskie temperatury wymaga konkretnych informacji producenta. Nie utożsamiaj błyszczącej powierzchni z wodoodpornością ani obszernego wyglądu z określonym poziomem izolacji."],
+        ["Porównanie w arkuszu",
+          "Obok ceny zapisz przeznaczenie, wymiary i deklarowane parametry. Nieznane właściwości oznacz jako nieweryfikowane. Przy dwóch podobnych modelach brak danych może być ważniejszą różnicą niż niewielka różnica ceny."]
+      ],
+      headers:["Obszar","Do sprawdzenia","Czego nie zakładać"],
+      rows:[["Warstwy","Ramiona, klatka, pachy","Większa długość nie daje więcej luzu"],["Pogoda","Konkretne deklaracje","Wygląd nie potwierdza wodoodporności"],["Detale","Kieszenie i regulacje","Zdjęcie nie podaje pojemności"]],
+      checklist:["Określ sposób używania.","Uwzględnij warstwy.","Sprawdź zapięcia i regulacje.","Zapisz niepotwierdzone parametry."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-spodnie-szorty",
+      title:"Kakobuy spreadsheet — spodnie i szorty: porównanie wymiarów",
+      description:"Sprawdź pas, stan, udo i długość nogawki. Poradnik porównywania spodni i szortów w kakobuy spreadsheet.",
+      group:"Kategorie i styl",image:"wardrobe",category:4,related:[13,8,19],
+      lead:"Dopasowanie spodni zależy od kilku wymiarów jednocześnie. Sam pas nie wystarczy, żeby przewidzieć swobodę ruchu i układ nogawki.",
+      sections:[
+        ["Czytaj tabelę razem z instrukcją",
+          "Sprawdź, czy pas oznacza szerokość mierzoną na płasko, czy pełny obwód. Przy elastycznej gumie tabela może podawać wymiar spoczynkowy albo zakres. Te dane trzeba rozróżnić przed porównaniem.",
+          "Zmierz własne spodnie w podobnym kroju. Zanotuj pas, wysokość stanu, szerokość uda i długość wewnętrzną nogawki. Jeśli oferta podaje tylko długość całkowitą, nie zastępuj nią automatycznie długości wewnętrznej."],
+        ["Dopasuj proporcje do fasonu",
+          "Spodnie o wyższym stanie mogą układać się inaczej mimo podobnej długości całkowitej. Przy szerokich nogawkach porównaj również dół. Przy szortach znaczenie ma długość w relacji do szerokości i miejsca noszenia pasa.",
+          "Nie zakładaj elastyczności materiału, jeśli opis jej nie potwierdza. W dopasowanym fasonie taka różnica może mieć duże znaczenie dla komfortu."],
+        ["Zapisuj komplet danych",
+          "W kakobuy spreadsheet dodaj osobne kolumny dla pasa, stanu i nogawki. Ujednolić jednostki najlepiej od razu. Brakujący wymiar oznacz do wyjaśnienia, szczególnie gdy jest kluczowy dla Twojej sylwetki."]
+      ],
+      headers:["Pomiar","Znaczenie","Typowa pomyłka"],
+      rows:[["Pas","Dopasowanie w talii","Szerokość zamiast obwodu"],["Stan","Położenie i proporcje","Pomijanie różnic fasonu"],["Nogawka","Długość i szerokość","Długość całkowita zamiast wewnętrznej"]],
+      checklist:["Sprawdź definicję pasa.","Zmierz podobne spodnie.","Porównaj stan i nogawkę.","Potwierdź elastyczność materiału."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-czapki",
+      title:"Kakobuy spreadsheet — czapki i headwear: dopasowanie",
+      description:"Porównuj nakrycia głowy według obwodu, regulacji, głębokości i konstrukcji. Praktyczny poradnik kakobuy spreadsheet.",
+      group:"Kategorie i styl",image:"store",category:5,related:[11,19,16],
+      lead:"Przy nakryciu głowy niewielka różnica proporcji może wyraźnie zmienić dopasowanie. Zapis „one size” nie wyjaśnia zakresu regulacji ani głębokości.",
+      sections:[
+        ["Sprawdź obwód i regulację",
+          "Zmierz obwód głowy w miejscu, w którym planujesz nosić czapkę. Porównaj wynik z podanym zakresem. Jeśli oferta nie określa zakresu regulacji, nie zakładaj, że dowolne zapięcie zapewni odpowiednie dopasowanie.",
+          "Przy modelu bez regulacji ważna jest konkretna tabela. Przy czapce dzianinowej zwróć uwagę na deklarowaną elastyczność i sposób mierzenia."],
+        ["Proporcje zmieniają wygląd",
+          "Głębokość korony, kształt daszka i usztywnienie wpływają na sposób układania się czapki. Warto porównać fotografie z boku oraz z przodu. Zdjęcie produktu leżącego na stole nie pokazuje w pełni efektu po założeniu.",
+          "Jeżeli zależy Ci na konkretnym profilu, zapisz to jako wymaganie. Sam kolor i logo nie wystarczą do odróżnienia niskiej konstrukcji od wysokiej."],
+        ["Dodaj funkcję w zestawie",
+          "Zastanów się, czy czapka ma być codziennym dodatkiem, czy elementem konkretnej stylizacji. Przy porównywaniu sprawdź również sposób pielęgnacji. W arkuszu zachowaj wariant kolorystyczny, zakres obwodu i informacje, których nadal brakuje."]
+      ],
+      headers:["Cecha","Co sprawdzić","Po co"],
+      rows:[["Obwód","Zakres w centymetrach","Podstawowe dopasowanie"],["Regulacja","Rodzaj i dostępny zakres","Możliwość dostosowania"],["Konstrukcja","Głębokość i daszek","Oczekiwany profil"]],
+      checklist:["Zmierz obwód głowy.","Sprawdź zakres regulacji.","Obejrzyj widok boczny.","Nie polegaj wyłącznie na „one size”."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-komplety",
+      title:"Kakobuy spreadsheet — komplety: sprawdź każdy element",
+      description:"Jak porównywać komplety odzieżowe? Osobne wymiary góry i dołu, zawartość zestawu oraz proporcje w kakobuy spreadsheet.",
+      group:"Kategorie i styl",image:"hoodie",category:6,related:[3,6,13],
+      lead:"Komplet może ułatwiać budowanie stylizacji, ale wspólny rozmiar nie gwarantuje dobrego dopasowania obu części. Górę i dół sprawdzaj oddzielnie.",
+      sections:[
+        ["Potwierdź zawartość oferty",
+          "Najpierw sprawdź, jakie elementy obejmuje cena. Fotografia stylizacji może przedstawiać dodatki, których nie ma w zestawie. W arkuszu zapisz dokładnie, czy oferta dotyczy góry i dołu, czy tylko jednego produktu.",
+          "Zwróć uwagę na możliwość wyboru rozmiarów. Jeżeli zestaw ma jeden wspólny rozmiar, porównaj go z obiema tabelami, a nie tylko z wymiarem wygodniejszej części."],
+        ["Porównaj dwie grupy pomiarów",
+          "Dla góry zanotuj szerokość, długość i rękaw. Dla dołu zapisz pas, stan i nogawkę. Jeżeli jedna część nie spełnia wymagań, atrakcyjny wygląd całości nie rozwiązuje problemu.",
+          "Sprawdź także deklarowany skład poszczególnych elementów. Podobny kolor nie oznacza identycznego materiału ani sposobu pielęgnacji. Fotografie wykonane w różnym świetle mogą utrudniać ocenę zgodności odcieni."],
+        ["Oceń przydatność poza kompletem",
+          "Dobrze jest znaleźć zastosowanie dla każdej części osobno. Bluza pasująca również do posiadanych spodni daje więcej możliwości. Zapisz dwa dodatkowe połączenia i porównaj komplet z zakupem pojedynczych elementów."]
+      ],
+      headers:["Element","Pomiary","Dodatkowe pytanie"],
+      rows:[["Góra","Szerokość, długość, rękaw","Czy pasuje do innych spodni?"],["Dół","Pas, stan, nogawka","Czy pasuje do innych warstw?"],["Zestaw","Zakres oferty","Co obejmuje podana cena?"]],
+      checklist:["Potwierdź liczbę elementów.","Porównaj obie tabele.","Sprawdź możliwość różnych rozmiarów.","Zaplanuj noszenie części osobno."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-bielizna",
+      title:"Kakobuy spreadsheet — bielizna: opis, materiał i rozmiar",
+      description:"Lista informacji do sprawdzenia przed wyborem bielizny: rozmiar, skład, konstrukcja, liczba sztuk i warunki zakupu.",
+      group:"Kategorie i styl",image:"wardrobe",category:7,related:[13,17,14],
+      lead:"W tej kategorii szczególnie przydają się precyzyjne informacje o wymiarach i zawartości opakowania. Ogólne zdjęcie zestawu nie zastępuje opisu.",
+      sections:[
+        ["Sprawdź jednostkę zakupu",
+          "Zapisz, ile sztuk obejmuje cena i czy wybierasz jeden kolor, czy określony zestaw. Wariant widoczny na miniaturze może różnić się od aktualnie zaznaczonej opcji.",
+          "Porównując cenę za sztukę, podziel koszt przez potwierdzoną liczbę elementów. Taka kalkulacja ma sens tylko wtedy, gdy zestawy są porównywalne pod względem rodzaju produktu."],
+        ["Czytaj skład i tabelę",
+          "Sprawdź deklarowany skład materiałowy, konstrukcję pasa oraz opis szwów, jeżeli go podano. Nie wyciągaj wniosków o właściwościach materiału wyłącznie z hasła reklamowego.",
+          "W tabeli rozmiarów rozróżnij obwód ciała od wymiarów produktu. Przy elastycznych częściach ważne jest, czy dane oznaczają wymiar spoczynkowy, czy zakres. Niejasne informacje warto wyjaśnić przed zakupem."],
+        ["Zachowaj informacje o warunkach",
+          "Przed płatnością przeczytaj zasady dotyczące konkretnej oferty, w tym zwrotów i stanu produktu. Nie zakładaj identycznych warunków dla wszystkich kategorii. W kakobuy spreadsheet zapisz datę weryfikacji, wariant i link do informacji sprzedawcy."]
+      ],
+      headers:["Informacja","Co zanotować","Cel"],
+      rows:[["Opakowanie","Potwierdzona liczba sztuk","Porównanie ceny jednostkowej"],["Rozmiar","Tabela i definicja pomiaru","Ograniczenie pomyłek"],["Warunki","Zasady konkretnej oferty","Świadomy zakup"]],
+      checklist:["Sprawdź liczbę sztuk.","Zapisz wybrany wariant.","Rozróżnij obwód ciała i produktu.","Przeczytaj warunki oferty."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-jersey",
+      title:"Kakobuy spreadsheet — jersey: jak porównać koszulki?",
+      description:"Porównuj jersey według kroju, wymiarów, nadruków i personalizacji. Lista kontroli koszulek sportowych w kakobuy spreadsheet.",
+      group:"Kategorie i styl",image:"store",category:8,related:[4,12,13],
+      lead:"Koszulka określana jako jersey może służyć do codziennej stylizacji lub aktywności. Przed wyborem ustal zastosowanie i sprawdź opis konkretnego wariantu.",
+      sections:[
+        ["Krój i zastosowanie",
+          "Nie opieraj dopasowania na samej nazwie wersji. Sprawdź szerokość, długość i rękawy. Dwa modele inspirowane podobnym stylem mogą różnić się proporcjami.",
+          "Jeśli koszulka ma służyć do aktywności, szukaj podanych informacji o materiale i przeznaczeniu. Sportowy wygląd nie potwierdza określonych właściwości użytkowych."],
+        ["Nadruki i personalizacja",
+          "Porównaj widok przodu, tyłu i detali. Zapisz dokładnie wybraną wersję, kolor oraz ewentualny napis. Przy personalizacji sprawdź pisownię i numer przed zatwierdzeniem zamówienia.",
+          "Zdjęcia mogą pomóc zauważyć położenie nadruku, ale nie potwierdzają jego trwałości. Nie traktuj też samej fotografii lub oznaczeń jako wystarczającego dowodu autentyczności produktu."],
+        ["Uporządkuj porównanie",
+          "W arkuszu oddziel nazwę wariantu od własnych notatek. Jeśli jedna oferta zawiera personalizację, a druga jej nie obejmuje, zaznacz różnicę przy cenie. Sprawdź warunki dotyczące modyfikowanego produktu bezpośrednio u sprzedawcy."]
+      ],
+      headers:["Obszar","Sprawdzenie","Notatka"],
+      rows:[["Krój","Wymiary wybranego wariantu","Nie polegaj na nazwie wersji"],["Nadruk","Położenie i treść","Zdjęcie nie potwierdza trwałości"],["Personalizacja","Pisownia, numer, cena","Potwierdź przed zakupem"]],
+      checklist:["Określ zastosowanie.","Sprawdź tabelę wariantu.","Zweryfikuj napis i numer.","Przeczytaj warunki personalizacji."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-akcesoria",
+      title:"Kakobuy spreadsheet — akcesoria: porównuj funkcję i wymiary",
+      description:"Praktyczny wybór dodatków: rzeczywiste wymiary, zapięcia, regulacja i dopasowanie do potrzeb w kakobuy spreadsheet.",
+      group:"Kategorie i styl",image:"wardrobe",category:9,related:[7,16,19],
+      lead:"Akcesoria bywają niewielkie, ale ich funkcjonalność zależy od konkretnych wymiarów. Zdjęcie bez skali łatwo prowadzi do błędnych oczekiwań.",
+      sections:[
+        ["Zacznij od zadania dodatku",
+          "Zapisz, do czego produkt ma służyć. W torbie ważne mogą być wymiary wnętrza i sposób zamknięcia, a w pasku zakres regulacji. Nie oceniaj wszystkich dodatków według tej samej listy cech.",
+          "Porównaj wymiary z przedmiotem, który produkt ma pomieścić lub uzupełnić. Sam wymiar zewnętrzny nie zawsze odpowiada przestrzeni wewnętrznej."],
+        ["Przyjrzyj się elementom użytkowym",
+          "Sprawdź zapięcia, mocowania, regulację i krawędzie. Jeśli oferta nie pokazuje istotnej części, zapisz brak informacji. Nie zakładaj wytrzymałości okuć ani składu materiału na podstawie ich koloru.",
+          "Przy akcesoriach sprzedawanych w zestawie potwierdź liczbę sztuk i dokładny zakres ceny. Upewnij się, że wybrany wariant odpowiada temu, który oceniasz na fotografii."],
+        ["Unikaj przypadkowych dodatków",
+          "Dopisz do listy dwa zastosowania w posiadanej garderobie. Niska cena nie oznacza dobrej wartości, jeśli dodatek wymaga kolejnych zakupów albo nie spełnia swojej podstawowej funkcji. Oceń go według użyteczności i danych, które można sprawdzić."]
+      ],
+      headers:["Rodzaj pytania","Przykład","Co zapisać"],
+      rows:[["Wymiary","Czy zmieści potrzebny przedmiot?","Dane wewnętrzne i zewnętrzne"],["Obsługa","Jak działa zapięcie?","Rodzaj i regulacja"],["Styl","Do czego będzie pasować?","Dwa realne zastosowania"]],
+      checklist:["Określ funkcję.","Sprawdź skalę i jednostki.","Obejrzyj mocowania.","Potwierdź zawartość zestawu."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-qc-zdjecia",
+      title:"Kakobuy spreadsheet — zdjęcia QC: lista kontroli",
+      description:"Jak czytać zdjęcia QC: zgodność wariantu, widoczne wykończenie, pomiary i ograniczenia oceny produktu na podstawie fotografii.",
+      group:"QC i rozmiary",image:"shoes",category:0,related:[13,2,17],
+      lead:"QC oznacza kontrolę jakości, ale zdjęcia są tylko jednym z jej narzędzi. Pomagają zauważyć widoczne rozbieżności, nie gwarantują wszystkich właściwości produktu.",
+      sections:[
+        ["Najpierw zgodność zamówienia",
+          "Sprawdź typ produktu, kolor, oznaczenie rozmiaru i liczbę elementów. Porównuj zdjęcia z wybranym wariantem, a nie z przypadkową miniaturą. Wiele pomyłek dotyczy właśnie opcji zamówienia.",
+          "Jeśli widać pomiar, sprawdź początek i koniec miarki oraz sposób ułożenia produktu. Zagięcie materiału lub inny punkt przyłożenia może zmienić odczyt."],
+        ["Potem widoczne szczegóły",
+          "Oceń ogólną symetrię, szwy, zapięcia i wykończenia. Przy butach przydatne są oba boki, pięta i widok z góry. Przy odzieży obejrzyj przód, tył i zbliżenia istotnych elementów.",
+          "Nie oceniaj odcienia na podstawie jednego kadru. Światło i aparat zmieniają wygląd kolorów. Jeśli coś budzi wątpliwość, potrzebne może być dodatkowe ujęcie wykonane w porównywalnych warunkach."],
+        ["Zapisz granice oceny",
+          "Zdjęcie nie potwierdza zapachu, komfortu, trwałości po praniu ani autentyczności. W arkuszu oddziel „widoczne na zdjęciu” od „niezweryfikowane”. Zamiast ogólnego „QC dobre” opisz dokładnie, co zostało sprawdzone i co pozostaje pytaniem."]
+      ],
+      headers:["Można ocenić częściowo","Nie można potwierdzić samym zdjęciem","Działanie"],
+      rows:[["Zgodność koloru i wariantu","Dokładny odcień w każdym świetle","Porównaj kilka ujęć"],["Widoczne szwy i łączenia","Długoterminowa trwałość","Zapisz zakres obserwacji"],["Odczyt miarki","Komfort noszenia","Sprawdź metodę pomiaru"]],
+      checklist:["Porównaj właściwy wariant.","Sprawdź kilka perspektyw.","Zapisz konkretne obserwacje.","Oznacz cechy niezweryfikowane."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-rozmiary",
+      title:"Kakobuy spreadsheet — rozmiary i własne pomiary",
+      description:"Jak porównywać rozmiary bez zgadywania: pomiary na płasko, obwody, jednostki oraz różnice konstrukcji odzieży i obuwia.",
+      group:"QC i rozmiary",image:"wardrobe",category:4,related:[6,3,2],
+      lead:"Najlepszy punkt odniesienia to rzecz, której dopasowanie już znasz. Pomiar ma jednak sens tylko wtedy, gdy wykonujesz go tak samo jak autor tabeli.",
+      sections:[
+        ["Ujednolić metodę i jednostki",
+          "Rozłóż ubranie na płasko bez naciągania, chyba że instrukcja wymaga innej metody. Zapisz punkt początkowy i końcowy pomiaru. Długość od najwyższego punktu ramienia nie musi odpowiadać długości mierzonej od kołnierza.",
+          "W arkuszu stosuj jedną jednostkę, na przykład centymetry. Oddziel szerokość mierzoną na płasko od obwodu. Podwojenie szerokości jest prostym obliczeniem geometrycznym, ale nie zastępuje instrukcji dopasowania produktu."],
+        ["Porównuj podobne konstrukcje",
+          "T-shirt z opuszczonym ramieniem i klasyczna koszulka mogą wymagać innej interpretacji długości rękawa. Podobnie spodnie o różnym stanie nie będą układać się identycznie przy tej samej długości całkowitej.",
+          "Nie stosuj jednej uniwersalnej poprawki rozmiaru do wszystkich produktów. Wybór większej litery może zmienić jednocześnie szerokość, długość i pozycję detali."],
+        ["Jak zapisywać różnice?",
+          "Załóżmy, że własna koszulka ma 54 cm szerokości, a tabela oferty wskazuje 57 cm mierzone w ten sam sposób. Różnica wynosi 3 cm na płasko. To informacja o wymiarze, a nie gwarancja konkretnego efektu na sylwetce."]
+      ],
+      headers:["Przykład pomiaru","Własny produkt","Oferta"],
+      rows:[["Szerokość na płasko","54 cm","57 cm"],["Długość tą samą metodą","70 cm","72 cm"],["Różnica szerokości","57 − 54","3 cm"]],
+      checklist:["Używaj jednej jednostki.","Zapisz metodę pomiaru.","Porównuj podobne fasony.","Nie utożsamiaj różnicy wymiarów z gwarancją dopasowania."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-budzet",
+      title:"Kakobuy spreadsheet — jak policzyć budżet zakupów?",
+      description:"Budżet kakobuy spreadsheet na prostym przykładzie: produkty, transport, pozostałe koszty i pełna suma w jednej walucie.",
+      group:"Budżet i organizacja",image:"store",category:9,related:[15,16,18],
+      lead:"Porównanie cen ma sens wtedy, gdy uwzględnia podobny zakres kosztów. Własny budżet rozdziel na produkty, transport i pozostałe pozycje.",
+      sections:[
+        ["Ustal wspólną walutę",
+          "Zanim zaczniesz sumować, przelicz pozycje na jedną walutę. Zapisz źródło i moment użytego przeliczenia oraz ewentualne koszty płatności. Nie porównuj ceny w jednej walucie z dostawą w innej bez przeliczenia.",
+          "Oddziel kwoty potwierdzone od szacunków. Jeśli koszt wysyłki nie jest jeszcze znany, oznacz go jako przybliżenie. Dokładna suma nie staje się wiarygodna tylko dlatego, że została pokazana z dwoma miejscami po przecinku."],
+        ["Przykład możliwy do przeliczenia",
+          "Przyjmijmy wyłącznie ilustracyjne kwoty: 180 zł za produkty, 65 zł za transport i 25 zł pozostałych kosztów. Suma wynosi 180 + 65 + 25 = 270 zł. Nie jest to oferta ani przewidywana cena konkretnego zamówienia.",
+          "Jeżeli zmienisz zawartość koszyka, ponownie sprawdź transport. Koszt dostawy nie musi rosnąć proporcjonalnie do wartości produktów."],
+        ["Porównaj plan z limitem",
+          "Zapisz własny limit i odejmij planowaną sumę. Przy limicie 300 zł i koszcie 270 zł pozostaje 30 zł. Ten zapas nie oznacza, że pokryje wszystkie możliwe zmiany. Gdy ważna pozycja jest nieznana, wróć do wyceny przed zakupem."]
+      ],
+      headers:["Pozycja przykładowa","Kwota","Obliczenie"],
+      rows:[["Produkty","180 zł",""],["Transport","65 zł",""],["Pozostałe koszty","25 zł",""],["Suma","270 zł","180 + 65 + 25"]],
+      checklist:["Ujednolić walutę.","Oznacz szacunki.","Zsumuj cały zakres kosztów.","Porównaj sumę z własnym limitem."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-wysylka",
+      title:"Kakobuy spreadsheet — wysyłka: jak porównywać warunki?",
+      description:"Porównanie wysyłki przy zakupach: masa, wymiary paczki, zakres usługi, aktualna wycena oraz informacje wymagające potwierdzenia.",
+      group:"Budżet i organizacja",image:"store",category:3,related:[14,17,18],
+      lead:"Najniższa widoczna kwota nie zawsze opisuje taki sam zakres usługi. Porównuj dostawę dla tej samej paczki, kierunku i zestawu warunków.",
+      sections:[
+        ["Zapisz dane przesyłki",
+          "Potrzebne mogą być masa i wymiary zapakowanej paczki, a nie tylko masa samych produktów. Zasady wyceny zależą od konkretnej usługi. Sprawdź, jakie dane są wymagane i jak operator oblicza należność.",
+          "Jeśli wymiary są jeszcze nieznane, zapisz wynik jako szacunek. Nie przedstawiaj orientacyjnego kalkulatora jako końcowej ceny do zapłaty."],
+        ["Sprawdź zakres porównania",
+          "Przy każdej opcji zanotuj kierunek, deklarowany przedział czasu, informacje o śledzeniu i zakres ewentualnych usług dodatkowych. Oddziel termin szacowany od gwarantowanego, jeżeli oferta w ogóle przewiduje gwarancję.",
+          "Sprawdź, co obejmuje cena oraz jakie pozycje mogą być rozliczane osobno. Nie przypisuj warunków jednej metody wszystkim pozostałym sposobom dostawy."],
+        ["Aktualizuj po zmianie koszyka",
+          "Dodanie produktu może zmienić opakowanie i parametry przesyłki. Po zmianie listy wróć do aktualnej wyceny. W kakobuy spreadsheet zachowaj datę sprawdzenia oraz link do warunków konkretnej usługi zamiast polegać na starej notatce."]
+      ],
+      headers:["Dane","Wpis do arkusza","Dlaczego"],
+      rows:[["Paczka","Masa i wymiary","Podstawa porównania"],["Usługa","Zakres i ograniczenia","Porównywalne warunki"],["Wycena","Kwota i data","Informacja może się zmieniać"]],
+      checklist:["Porównuj tę samą paczkę.","Sprawdź zakres ceny.","Rozróżnij czas szacowany i gwarantowany.","Odśwież wycenę po zmianach."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-porownanie-produktow",
+      title:"Kakobuy spreadsheet — porównanie produktów według priorytetów",
+      description:"Zbuduj prostą macierz porównania produktów: własne kryteria, warunki konieczne, brakujące dane i przejrzysty wybór.",
+      group:"Budżet i organizacja",image:"shoes",category:0,related:[14,13,18],
+      lead:"Najtańsza oferta nie musi najlepiej spełniać Twoich wymagań. Zanim porównasz kwoty, określ cechy konieczne i te, które są tylko dodatkiem.",
+      sections:[
+        ["Oddziel wymagania od preferencji",
+          "Wymaganiem może być konkretny zakres wymiarów lub maksymalny koszt całkowity. Preferencją — kolor, dodatkowa kieszeń albo detal wykończenia. Produkt niespełniający warunku koniecznego nie powinien wygrywać tylko dzięki atrakcyjnej fotografii.",
+          "Nie oceniaj wszystkich kategorii tymi samymi kryteriami. W butach priorytetem może być dopasowanie, a w torbie rzeczywista pojemność użytkowa."],
+        ["Porównanie trzech propozycji",
+          "Dla każdej oferty wpisz „spełnia”, „nie spełnia” albo „brak danych”. Brak informacji nie powinien automatycznie otrzymywać pozytywnej oceny. Pozwala to zobaczyć, które pytania trzeba wyjaśnić przed dalszą decyzją.",
+          "Jeśli stosujesz punkty, ustal zasady przed ocenianiem produktów. Inaczej łatwo dopasować punktację do rzeczy, która już wcześniej spodobała Ci się najbardziej."],
+        ["Zachowaj uzasadnienie wyboru",
+          "Obok decyzji zapisz jedno konkretne zdanie, na przykład: „wymiary są zgodne z punktem odniesienia, a suma mieści się w limicie”. Taka notatka pomaga wrócić do powodów zakupu po kilku dniach i ogranicza wybory pod wpływem chwilowej promocji."]
+      ],
+      headers:["Kryterium przykładowe","Oferta A","Oferta B"],
+      rows:[["Wymiary odpowiadają potrzebie","Spełnia","Brak danych"],["Koszt mieści się w limicie","Spełnia","Spełnia"],["Wariant potwierdzony","Spełnia","Do sprawdzenia"]],
+      checklist:["Zdefiniuj warunki konieczne.","Nie zamieniaj braku danych w zaletę.","Porównuj ten sam zakres ceny.","Zapisz powód wyboru."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-bledy",
+      title:"Kakobuy spreadsheet — najczęstsze błędy i jak ich unikać",
+      description:"Unikaj typowych pomyłek: nieaktualnych linków, niewłaściwych wariantów, nieporównywalnych wymiarów i pomijania pełnych kosztów.",
+      group:"Podstawy",image:"wardrobe",category:2,related:[0,12,15],
+      lead:"Lista produktów jest przydatna tylko wtedy, gdy rozumiesz, co zostało na niej zapisane. Wiele pomyłek wynika z braku aktualizacji lub zbyt ogólnych notatek.",
+      sections:[
+        ["Nieaktualny link i pomylony wariant",
+          "Oferta mogła zmienić zawartość, cenę albo dostępne opcje. Przed zakupem ponownie otwórz link i porównaj produkt z notatką. Zapisany wcześniej tytuł nie gwarantuje, że aktualna strona przedstawia to samo.",
+          "Drugim problemem jest ocenianie fotografii jednego wariantu i zamawianie innego. Kolor, rozmiar i personalizację sprawdzaj w podsumowaniu, a nie tylko na zdjęciu."],
+        ["Nieporównywalne dane",
+          "Szerokość na płasko i obwód to różne wartości. Podobnie masa produktu i masa zapakowanej paczki nie oznaczają tego samego. Przed sumowaniem albo oceną wymiarów sprawdź jednostki i definicje.",
+          "Nie traktuj ogólnej opinii lub pojedynczego zdjęcia jako dowodu wszystkich właściwości. Zapis „wygląda dobrze” nie wyjaśnia, czy sprawdzono rozmiar, detale, materiał czy wyłącznie kolor."],
+        ["Cena bez kontekstu",
+          "Porównywanie samej ceny produktu może pomijać różnice w liczbie sztuk, dostawie i zakresie oferty. Dobrą praktyką jest ostatnia kontrola całego zamówienia: właściwy produkt, właściwy wariant, znane warunki i potwierdzona suma."]
+      ],
+      headers:["Błąd","Możliwy skutek","Korekta"],
+      rows:[["Stara notatka","Błędne oczekiwania","Ponownie otwórz ofertę"],["Inna metoda pomiaru","Nietrafione dopasowanie","Ujednolić definicje"],["Cena bez zakresu","Niepełne porównanie","Sprawdź liczbę sztuk i koszty"]],
+      checklist:["Odśwież link przed zakupem.","Sprawdź wariant w podsumowaniu.","Porównaj jednostki.","Potwierdź pełną sumę."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-wlasna-lista",
+      title:"Kakobuy spreadsheet — jak zbudować własną listę produktów?",
+      description:"Przejrzysty układ własnej listy kakobuy spreadsheet: link, wariant, pomiary, koszt, data weryfikacji i status decyzji.",
+      group:"Budżet i organizacja",image:"store",category:9,related:[0,16,14],
+      lead:"Własny arkusz nie musi być rozbudowany. Powinien umożliwiać szybki powrót do produktu i od razu pokazywać, czego jeszcze nie udało się sprawdzić.",
+      sections:[
+        ["Zacznij od najważniejszych kolumn",
+          "Utwórz pola: nazwa, kategoria, link, wariant, cena z walutą i data weryfikacji. Dopiero później dodaj wymiary oraz notatki. Zbyt wiele obowiązkowych kolumn może utrudniać regularne aktualizowanie listy.",
+          "Każdy wariant, który rzeczywiście porównujesz, najlepiej zapisać osobno. Wtedy zmiana koloru lub rozmiaru nie nadpisuje wcześniejszej informacji."],
+        ["Ustal prosty system statusów",
+          "Przydatne są trzy etapy: „inspiracja”, „do sprawdzenia” i „wybrane”. Możesz dodać „odrzucone” wraz z krótkim powodem. Nie usuwaj każdej odrzuconej pozycji od razu — notatka pozwala uniknąć ponownego analizowania tej samej oferty.",
+          "Kolor powinien wspierać opis tekstowy, a nie go zastępować. Dzięki temu status pozostaje zrozumiały po wydrukowaniu albo przy innym sposobie wyświetlania."],
+        ["Dbaj o aktualność",
+          "Raz na jakiś czas przejrzyj pozycje, do których nadal chcesz wracać. Oznacz niedostępne oferty i usuń duplikaty. Przed zakupem wykonaj świeżą kontrolę warunków; data w arkuszu dokumentuje przeszłe sprawdzenie, nie aktualną gwarancję."]
+      ],
+      headers:["Kolumna","Przykładowy wpis","Zasada"],
+      rows:[["Wariant","Czarny / wybrany rozmiar","Konkretny wybór"],["Dane","Wymiary według tabeli","Jedna metoda"],["Status","Do sprawdzenia","Opis tekstowy"],["Data","Dzień weryfikacji","Aktualizuj po kontroli"]],
+      checklist:["Zacznij od kilku kolumn.","Rozdziel warianty.","Stosuj opisane statusy.","Usuwaj duplikaty i aktualizuj daty."]
+    },
+    {
+      slug:"kakobuy-spreadsheet-garderoba",
+      title:"Kakobuy spreadsheet — jak zaplanować spójną garderobę?",
+      description:"Wykorzystaj kakobuy spreadsheet do planowania garderoby: paleta kolorów, proporcje, realne potrzeby i zestawy z posiadanymi ubraniami.",
+      group:"Kategorie i styl",image:"wardrobe",category:6,related:[4,3,18],
+      lead:"Spójna garderoba powstaje wtedy, gdy nowe rzeczy współpracują z tym, co już masz. Lista zakupów może pokazywać te połączenia przed wydaniem pieniędzy.",
+      sections:[
+        ["Zrób krótki przegląd obecnych rzeczy",
+          "Zapisz najczęściej noszone spodnie, warstwy i buty. Zwróć uwagę na dominujące kolory oraz fasony. Nie chodzi o sztywną liczbę ubrań, tylko o rozpoznanie elementów, które naprawdę wykorzystujesz.",
+          "Następnie wskaż konkretną lukę: brak neutralnej koszulki, odpowiedniej warstwy lub dodatku. Dzięki temu nowy produkt ma zadanie, a nie jest wyłącznie atrakcyjnym obrazkiem."],
+        ["Łącz kolory i proporcje",
+          "Przy każdej propozycji zapisz co najmniej dwa zestawy z posiadanymi rzeczami. Oceń nie tylko kolor, lecz także długość i objętość. Luźna góra i szeroki dół mogą dawać inny efekt niż ten sam kolor w dopasowanym kroju.",
+          "Jeśli produkt wymaga dokupienia kilku kolejnych elementów, dodaj ten fakt do notatki budżetowej. Niska cena pojedynczej rzeczy nie musi oznaczać niewielkiego kosztu całego pomysłu."],
+        ["Przydatność zamiast liczby zapisów",
+          "Regularnie usuwaj z krótkiej listy propozycje, dla których nie potrafisz wskazać zastosowania. W kakobuy spreadsheet można zachować je jako inspiracje, ale oddziel je od planowanych zakupów. Taki podział pozwala cieszyć się odkrywaniem bez utożsamiania każdego zapisu z potrzebą."]
+      ],
+      headers:["Pytanie","Przykładowa odpowiedź","Znaczenie"],
+      rows:[["Jaką lukę uzupełnia?","Brak codziennej warstwy","Określona potrzeba"],["Z czym połączę?","Dwa posiadane zestawy","Realne wykorzystanie"],["Czy wymaga dodatków?","Tak / nie","Pełniejszy obraz budżetu"]],
+      checklist:["Zacznij od posiadanej garderoby.","Nazwij konkretną potrzebę.","Zaplanuj dwa połączenia.","Oddziel inspiracje od zakupów."]
+    }
+  ];
+
+  const escapeHTML = value => String(value).replace(/[&<>"']/g, character => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[character]));
+
+  const safeJSON = value => JSON.stringify(value).replace(/</g,"\\u003c");
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const categorySelect = document.getElementById("category-select");
+  categorySelect.addEventListener("change", () => {
+    document.getElementById("category-open").href = categorySelect.value;
+  });
+
+  const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const selected = button.dataset.filter;
+      filterButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      let count = 0;
+      document.querySelectorAll(".guide[data-group]").forEach(card => {
+        const show = selected === "all" || card.dataset.group === selected;
+        card.hidden = !show;
+        if (show) count++;
+      });
+      document.getElementById("guide-count").textContent = count + " / 20 PORADNIKÓW";
+    });
+  });
+
+  const money = new Intl.NumberFormat("pl-PL", {style:"currency",currency:"PLN"});
+  function updateBudget() {
+    const ids = ["cost-products","cost-shipping","cost-other"];
+    const sum = ids.reduce((total,id) => {
+      const input = document.getElementById(id);
+      const amount = input.valueAsNumber;
+      return total + (Number.isFinite(amount) ? Math.max(0,Math.min(1000000,amount)) : 0);
+    },0);
+    document.getElementById("cost-total").textContent = money.format(sum);
+  }
+  ["cost-products","cost-shipping","cost-other"].forEach(id => {
+    document.getElementById(id).addEventListener("input",updateBudget);
+  });
+  updateBudget();
+
+  const sheet = document.getElementById("mobile-sheet");
+  const backdrop = document.getElementById("sheet-backdrop");
+  const sheetOpeners = Array.from(document.querySelectorAll("[data-open-sheet]"));
+  let previousFocus = null;
+
+  document.getElementById("sheet-categories").innerHTML = categories.map(category =>
+    '<a href="'+escapeHTML(category[1])+'" target="_blank" rel="noopener nofollow">'+escapeHTML(category[0])+' ↗</a>'
+  ).join("");
+
+  function closeSheet() {
+    sheet.hidden = true;
+    backdrop.hidden = true;
+    document.body.classList.remove("sheet-open");
+    sheetOpeners.forEach(button => button.setAttribute("aria-expanded","false"));
+    if (previousFocus && previousFocus.isConnected) previousFocus.focus();
+  }
+
+  function openSheet() {
+    previousFocus = document.activeElement;
+    sheet.hidden = false;
+    backdrop.hidden = false;
+    document.body.classList.add("sheet-open");
+    sheetOpeners.forEach(button => button.setAttribute("aria-expanded","true"));
+    document.getElementById("sheet-close").focus();
+  }
+
+  sheetOpeners.forEach(button => button.addEventListener("click",openSheet));
+  document.getElementById("sheet-close").addEventListener("click",closeSheet);
+  backdrop.addEventListener("click",closeSheet);
+  sheet.querySelectorAll("a").forEach(link => link.addEventListener("click",closeSheet));
+
+  document.addEventListener("keydown",event => {
+    if (sheet.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeSheet();
+    }
+    if (event.key === "Tab") {
+      const focusable = Array.from(sheet.querySelectorAll('a[href],button:not([disabled])'));
+      const first = focusable[0];
+      const last = focusable[focusable.length-1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  const desktopQuery = window.matchMedia("(min-width:761px)");
+  desktopQuery.addEventListener("change",event => {
+    if (event.matches && !sheet.hidden) closeSheet();
+  });
+
+  function articleHTML(article,index) {
+    const css = document.querySelector("style").textContent;
+    const image = photos[article.image];
+    const category = categories[article.category];
+    const sections = article.sections.map(section =>
+      "<section style=\"padding:0\"><h2>"+escapeHTML(section[0])+"</h2>"+
+      section.slice(1).map(paragraph=>"<p>"+escapeHTML(paragraph)+"</p>").join("")+
+      "</section>"
+    ).join("");
+
+    const table = '<div class="table-scroll"><table><caption style="text-align:left;padding:12px 13px;color:#b3b3c4;font-size:11px">Zestawienie pomocnicze do porównania produktów</caption><thead><tr>'+
+      article.headers.map(header=>"<th scope=\"col\">"+escapeHTML(header)+"</th>").join("")+
+      "</tr></thead><tbody>"+
+      article.rows.map(row=>"<tr>"+row.map(cell=>"<td>"+escapeHTML(cell)+"</td>").join("")+"</tr>").join("")+
+      "</tbody></table></div>";
+
+    const checklist = "<h2>Lista kontrolna przed decyzją</h2><ul>"+
+      article.checklist.map(item=>"<li>"+escapeHTML(item)+"</li>").join("")+"</ul>";
+
+    const related = article.related.map(relatedIndex => {
+      const other = articles[relatedIndex];
+      return '<a class="related-link" href="'+other.slug+'.html">'+escapeHTML(other.title)+' <span style="color:var(--lime)">↗</span></a>';
+    }).join("");
+
+    const schema = {
+      "@context":"https://schema.org",
+      "@graph":[
+        {
+          "@type":"Article",
+          "headline":article.title,
+          "description":article.description,
+          "inLanguage":"pl",
+          "image":image,
+          "articleSection":article.group,
+          "author":{"@type":"Organization","name":"Kakosheet PL"},
+          "publisher":{"@type":"Organization","name":"Kakosheet PL"}
+        },
+        {
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Strona główna","item":"index.html"},
+            {"@type":"ListItem","position":2,"name":article.title,"item":article.slug+".html"}
+          ]
+        }
+      ]
+    };
+
+    return '<!DOCTYPE html>\n<html lang="pl">\n<head>\n'+
+      '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
+      '<meta name="theme-color" content="#101019"><meta name="color-scheme" content="dark">'+
+      '<meta name="robots" content="index,follow,max-image-preview:large">'+
+      '<title>'+escapeHTML(article.title)+' | Kakosheet PL</title>'+
+      '<meta name="description" content="'+escapeHTML(article.description)+'">'+
+      '<meta property="og:type" content="article"><meta property="og:locale" content="pl_PL">'+
+      '<meta property="og:title" content="'+escapeHTML(article.title)+'">'+
+      '<meta property="og:description" content="'+escapeHTML(article.description)+'">'+
+      '<meta property="og:image" content="'+escapeHTML(image)+'">'+
+      '<meta name="twitter:card" content="summary_large_image">'+
+      '<style>'+css+'</style>'+
+      '<script type="application/ld+json">'+safeJSON(schema)+'<\/script>\n</head>\n<body>'+
+      '<a class="skip" href="#article">Przejdź do artykułu</a>'+
+      '<header class="nav"><div class="wrap nav-inner">'+
+      '<a class="brand" href="index.html"><span class="brand-icon" aria-hidden="true">k</span>kako<span style="color:var(--lime)">sheet</span><small>PL</small></a>'+
+      '<nav class="nav-links" aria-label="Nawigacja główna"><a href="index.html#kategorie">Kategorie</a><a href="index.html#poradniki">Poradniki</a><a href="index.html#budzet">Budżet</a><a class="btn btn-lime btn-small" href="https://kalobuy.com/" target="_blank" rel="noopener nofollow">Otwórz Kalobuy ↗</a></nav>'+
+      '<a class="menu-mobile" href="index.html#poradniki" aria-label="Wszystkie poradniki">▤</a>'+
+      '</div></header>'+
+      '<main class="wrap" id="article"><article class="article-main">'+
+      '<nav class="breadcrumb" aria-label="Okruszki"><a href="index.html">Strona główna</a><span aria-hidden="true">/</span><a href="index.html#poradniki">Poradniki</a><span aria-hidden="true">/</span><span>'+escapeHTML(article.group)+'</span></nav>'+
+      '<header class="article-header"><p class="eyebrow">PORADNIK '+String(index+1).padStart(2,"0")+' / 20 · '+escapeHTML(article.group)+'</p>'+
+      '<h1>'+escapeHTML(article.title)+'</h1><p class="article-lead">'+escapeHTML(article.lead)+'</p></header>'+
+      '<img class="article-image" src="'+escapeHTML(image)+'" alt="Ilustracja inspiracyjna do poradnika: '+escapeHTML(article.title)+'" width="1400" height="800" fetchpriority="high">'+
+      '<div class="article-body">'+sections+table+checklist+
+      '<aside class="article-aside"><strong>Przejdź od poradnika do kategorii.</strong><p style="margin:8px 0 0">Zobacz <a href="'+escapeHTML(category[1])+'" target="_blank" rel="noopener nofollow">'+escapeHTML(category[0])+' w Kalobuy</a> lub wróć do <a href="index.html">strony głównej kakobuy spreadsheet</a>, aby porównać pozostałe kategorie.</p></aside>'+
+      '<h2>Powiązane poradniki</h2><div class="related-grid">'+related+'</div>'+
+      '<p class="article-disclaimer">Materiał ma charakter informacyjny. Przykłady i tabele nie są ofertą ani potwierdzeniem właściwości konkretnego produktu. Ceny, dostępność, rozmiary i warunki należy zweryfikować u sprzedawcy. Zdjęcie pełni funkcję ilustracyjną.</p>'+
+      '</div><div class="hero-actions" style="margin-top:24px"><a class="btn btn-lime" href="index.html">← Kakobuy spreadsheet</a><a class="btn btn-dark" href="index.html#poradniki">Wszystkie 20 poradników</a></div>'+
+      '</article></main>'+
+      '<footer><div class="wrap footer-bottom"><p>© '+new Date().getFullYear()+' Kakosheet PL · Polski przewodnik kakobuy spreadsheet. Linki zakupowe prowadzą do zewnętrznej strony Kalobuy.</p><a class="text-link" href="index.html">Strona główna ↗</a></div></footer>'+
+      '<nav class="bottom-nav" aria-label="Nawigacja mobilna"><a href="index.html"><span class="bottom-icon" aria-hidden="true">⌂</span>Start</a><a href="index.html#kategorie"><span class="bottom-icon" aria-hidden="true">▦</span>Kategorie</a><a class="active" href="index.html#poradniki"><span class="bottom-icon" aria-hidden="true">▤</span>Poradniki</a><a href="https://kalobuy.com/" target="_blank" rel="noopener nofollow"><span class="bottom-icon" aria-hidden="true">↗</span>Kalobuy</a></nav>'+
+      '\n</body>\n</html>';
+  }
+
+  /*
+   * Minimalny zapis ZIP bez bibliotek i bez kompresji.
+   * Archiwum zawiera prawdziwe, niezależne dokumenty HTML.
+   */
+  const crcTable = (() => {
+    const table = new Uint32Array(256);
+    for (let n=0;n<256;n++) {
+      let c=n;
+      for (let k=0;k<8;k++) c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);
+      table[n]=c>>>0;
+    }
+    return table;
+  })();
+
+  function crc32(bytes) {
+    let crc=0xffffffff;
+    for (let i=0;i<bytes.length;i++) crc=crcTable[(crc^bytes[i])&255]^(crc>>>8);
+    return (crc^0xffffffff)>>>0;
+  }
+
+  function makeZip(files) {
+    const encoder = new TextEncoder();
+    const localParts=[];
+    const centralParts=[];
+    let offset=0;
+    const now=new Date();
+    const dosTime=(now.getHours()<<11)|(now.getMinutes()<<5)|(now.getSeconds()>>1);
+    const dosYear=Math.max(1980,Math.min(2107,now.getFullYear()));
+    const dosDate=((dosYear-1980)<<9)|((now.getMonth()+1)<<5)|now.getDate();
+
+    for (const file of files) {
+      const name=encoder.encode(file.name);
+      const data=encoder.encode(file.content);
+      const checksum=crc32(data);
+      const local=new Uint8Array(30+name.length);
+      const lv=new DataView(local.buffer);
+      lv.setUint32(0,0x04034b50,true);
+      lv.setUint16(4,20,true);
+      lv.setUint16(6,0x0800,true);
+      lv.setUint16(8,0,true);
+      lv.setUint16(10,dosTime,true);
+      lv.setUint16(12,dosDate,true);
+      lv.setUint32(14,checksum,true);
+      lv.setUint32(18,data.length,true);
+      lv.setUint32(22,data.length,true);
+      lv.setUint16(26,name.length,true);
+      lv.setUint16(28,0,true);
+      local.set(name,30);
+      localParts.push(local,data);
+
+      const central=new Uint8Array(46+name.length);
+      const cv=new DataView(central.buffer);
+      cv.setUint32(0,0x02014b50,true);
+      cv.setUint16(4,20,true);
+      cv.setUint16(6,20,true);
+      cv.setUint16(8,0x0800,true);
+      cv.setUint16(10,0,true);
+      cv.setUint16(12,dosTime,true);
+      cv.setUint16(14,dosDate,true);
+      cv.setUint32(16,checksum,true);
+      cv.setUint32(20,data.length,true);
+      cv.setUint32(24,data.length,true);
+      cv.setUint16(28,name.length,true);
+      cv.setUint16(30,0,true);
+      cv.setUint16(32,0,true);
+      cv.setUint16(34,0,true);
+      cv.setUint16(36,0,true);
+      cv.setUint32(38,0,true);
+      cv.setUint32(42,offset,true);
+      central.set(name,46);
+      centralParts.push(central);
+      offset+=local.length+data.length;
+    }
+
+    const centralLength=centralParts.reduce((sum,part)=>sum+part.length,0);
+    const end=new Uint8Array(22);
+    const ev=new DataView(end.buffer);
+    ev.setUint32(0,0x06054b50,true);
+    ev.setUint16(4,0,true);
+    ev.setUint16(6,0,true);
+    ev.setUint16(8,files.length,true);
+    ev.setUint16(10,files.length,true);
+    ev.setUint32(12,centralLength,true);
+    ev.setUint32(16,offset,true);
+    ev.setUint16(20,0,true);
+    return new Blob([...localParts,...centralParts,end],{type:"application/zip"});
+  }
+
+  function cleanHomeHTML() {
+    const clone=document.documentElement.cloneNode(true);
+    clone.querySelector("body").classList.remove("sheet-open");
+
+    const clonedSheet=clone.querySelector("#mobile-sheet");
+    const clonedBackdrop=clone.querySelector("#sheet-backdrop");
+    clonedSheet.hidden=true;
+    clonedBackdrop.hidden=true;
+
+    clone.querySelectorAll("[data-open-sheet]").forEach(button=>button.setAttribute("aria-expanded","false"));
+    clone.querySelectorAll(".guide[data-group]").forEach(card=>card.hidden=false);
+    clone.querySelectorAll("[data-filter]").forEach(button=>{
+      button.setAttribute("aria-pressed",String(button.dataset.filter==="all"));
+    });
+
+    clone.querySelector("#guide-count").textContent="20 PORADNIKÓW";
+    clone.querySelector("#category-select").selectedIndex=0;
+    clone.querySelector("#category-open").setAttribute("href",categories[0][1]);
+    clone.querySelector("#export-status").textContent="";
+    const button=clone.querySelector("#export-site");
+    button.removeAttribute("disabled");
+    button.textContent="Pobierz witrynę · 21 plików HTML ↓";
+
+    return "<!DOCTYPE html>\n"+clone.outerHTML;
+  }
+
+  document.getElementById("export-site").addEventListener("click",async()=>{
+    const button=document.getElementById("export-site");
+    const status=document.getElementById("export-status");
+    button.disabled=true;
+    status.textContent="Przygotowywanie 21 stron HTML…";
+
+    try {
+      await new Promise(resolve=>requestAnimationFrame(resolve));
+      const files=[
+        {name:"index.html",content:cleanHomeHTML()},
+        ...articles.map((article,index)=>({
+          name:article.slug+".html",
+          content:articleHTML(article,index)
+        }))
+      ];
+
+      const fileNames=new Set(files.map(file=>file.name));
+      for (const file of files) {
+        const localLinks=Array.from(file.content.matchAll(/href="([^"#?]+\.html)(?:#[^"]*)?"/g));
+        for (const match of localLinks) {
+          if (!match[1].startsWith("https://") && !fileNames.has(match[1])) {
+            throw new Error("Brak pliku docelowego: "+match[1]);
+          }
+        }
+      }
+
+      const blob=makeZip(files);
+      const url=URL.createObjectURL(blob);
+      const download=document.createElement("a");
+      download.href=url;
+      download.download="kakobuy-spreadsheet-pl-static.zip";
+      download.hidden=true;
+      document.body.appendChild(download);
+      download.click();
+      download.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),30000);
+      status.textContent="ZIP gotowy. Rozpakuj i opublikuj wszystkie 21 plików w jednym katalogu.";
+    } catch(error) {
+      status.textContent="Nie udało się utworzyć ZIP-u. Spróbuj ponownie w aktualnej przeglądarce.";
+      console.error(error);
+    } finally {
+      button.disabled=false;
+    }
+  });
+  </script>
+</body>
+</html>
